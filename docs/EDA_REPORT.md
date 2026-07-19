@@ -25,7 +25,7 @@ python python/run_eda.py
 - `outputs/figures/vdi_distribution.png`
 - `outputs/figures/road_eta_vs_vdi.png`
 
-`outputs/`는 고정 입력에서 다시 만들 수 있으므로 Git에 커밋하지 않는다.
+`outputs/`는 고정 입력에서 다시 만들 수 있으므로 Git에 커밋하지 않는다. 다만 포트폴리오 검토자가 바로 확인해야 하는 대표 그래프 2개는 `docs/assets/`에 검토본으로 보존한다.
 
 ### 실행 환경과 재현 확인
 
@@ -38,7 +38,9 @@ python python/run_eda.py
 | Notebook | 코드 셀 3개 전체 실행, 오류 출력 0개 |
 | 정책 릴리스 원시 SHA-256 | `d7b0658c62ec2e89465bc8ebf266bb5fd198461c5d9e8d5da2c44d5b3b33cfbc` |
 | `district_metrics.csv` SHA-256 | `e933c1a72940e30392f4b9895e4f62599c7ff7f947d2f09fc22a440f3e5106d1` |
-| `eda_summary.json` SHA-256 | `a7cc61fd3f6819de38c47e9c686f15fd2db1038d5899928f074934e14c97db17` |
+| `eda_summary.json` SHA-256 | `b45b447c7e512302dd34056bd6e6cb05b1fcb9d2b69d85620a983ccdfe1017d9` |
+| `docs/assets/vdi_distribution.png` SHA-256 | `c6bb4c651067cc4d9bac70e3f64e102b5aaeb89d025d6b694eebcf18b5844be0` |
+| `docs/assets/road_eta_vs_vdi.png` SHA-256 | `996b7236afd9d02281cc91dd0cc9f392f76392af3913d3cf7020fe6679403326` |
 
 위 출력 해시는 이 실행 환경과 고정 입력에서 생성한 확인값이다. 향후 직렬화 방식이나 라이브러리 버전이 바뀌면 분석값이 같더라도 파일 바이트 해시는 달라질 수 있다.
 
@@ -53,7 +55,7 @@ python python/run_eda.py
 | `취약인구 = 0~9세 + 65세 이상` 불일치 | 0 |
 | 위험 기준 `13,261.43` 이상 행정동 | 38 |
 
-이 결과는 스냅샷 내부의 구조적 일관성을 뜻한다. 외부 원천 데이터의 최신성이나 현장 정확성을 자동으로 보증하지 않는다.
+필수 분석 필드 결측에는 `road_distance_km`도 포함한다. 중복, 필수 결측, 음수, 취약인구 산식 불일치가 발견되면 `python/run_eda.py`는 CSV와 그래프를 생성하기 전에 중단한다. 이 결과는 스냅샷 내부의 구조적 일관성을 뜻하며, 외부 원천 데이터의 최신성이나 현장 정확성을 자동으로 보증하지 않는다.
 
 ## 4. 기초 통계
 

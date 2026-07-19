@@ -8,13 +8,14 @@ from pathlib import Path
 from typing import Any
 
 import matplotlib
+
+matplotlib.use("Agg")
+
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 from matplotlib import font_manager
 
-
-matplotlib.use("Agg")
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
 INPUT_PATH = ROOT_DIR / "datasets" / "policy_release.json"
@@ -27,6 +28,7 @@ REQUIRED_COLUMNS = (
     "senior_population",
     "vulnerable_population",
     "road_eta_minutes",
+    "road_distance_km",
     "vdi",
     "latitude",
     "longitude",
@@ -155,6 +157,21 @@ def build_quality_summary(
     }
 
 
+def validate_quality(quality_summary: dict[str, Any]) -> None:
+    """품질 이상이 있으면 분석 산출물을 만들기 전에 중단한다."""
+    errors = []
+    if quality_summary["duplicate_district_count"] > 0:
+        errors.append("행정동명 중복 존재")
+    if sum(quality_summary["missing_counts"].values()) > 0:
+        errors.append("필수 분석 필드 결측 존재")
+    if sum(quality_summary["negative_counts"].values()) > 0:
+        errors.append("인구·ETA·거리·VDI 음수값 존재")
+    if quality_summary["vulnerable_population_mismatch_count"] > 0:
+        errors.append("취약인구 산식 불일치")
+    if errors:
+        raise ValueError("; ".join(errors))
+
+
 def configure_plot_font() -> str:
     """환경에 설치된 한글 글꼴을 우선 선택한다."""
     available_fonts = {font.name for font in font_manager.fontManager.ttflist}
@@ -265,6 +282,7 @@ def main() -> None:
     district_frame = build_district_frame(release)
     risk_threshold = float(release["metadata"]["risk_threshold"])
     quality_summary = build_quality_summary(district_frame, risk_threshold)
+    validate_quality(quality_summary)
 
     selected_font = configure_plot_font()
     write_outputs(release, district_frame, quality_summary)
