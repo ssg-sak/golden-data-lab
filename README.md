@@ -44,6 +44,14 @@ jupyter notebook notebooks/01_daegu_data_eda.ipynb
 
 EDA 스크립트는 내부 콘텐츠 해시와 데이터 계약을 다시 검사한 후 `outputs/`에 분석용 CSV, 요약 JSON과 그래프를 생성합니다. `outputs/`는 재생성 가능한 로컬 산출물이므로 Git에 커밋하지 않습니다. 주요 해석은 [`docs/EDA_REPORT.md`](./docs/EDA_REPORT.md)에 기록합니다.
 
+## 주요 분석 결과
+
+전체 재생성 산출물은 `outputs/`에 두고, 채용자와 리뷰어가 바로 확인해야 하는 대표 그래프만 `docs/assets/`에 검토본으로 보존합니다.
+
+![VDI 분포](./docs/assets/vdi_distribution.png)
+
+![도로 ETA와 VDI](./docs/assets/road_eta_vs_vdi.png)
+
 ## 저장소 구조
 
 ```text
@@ -53,7 +61,7 @@ golden-data-lab/
 ├── python/                        # 수집·검증 보조 스크립트
 ├── 01_sql_public_health_analysis/ # SQL 학습·분석 작업 영역
 ├── powerbi/                       # Power BI 작업 영역
-├── docs/                          # 출처·방법·한계 문서
+├── docs/                          # 출처·방법·한계 문서와 대표 시각화
 ├── ROADMAP.md
 └── requirements.txt
 ```
