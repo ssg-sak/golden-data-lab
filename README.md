@@ -9,6 +9,7 @@
 - 검증 스냅샷 다운로드와 SHA-256 확인
 - 150개 행정동, 25개 응급 관련 기관, 9개 후보지, 5,100개 도로 경로 데이터 계약 확인
 - 취약인구·도로 이동시간·VDI 분포 탐색
+- 결측·중복·음수·취약인구 합계 관계를 검사하는 재현 가능한 EDA 스크립트
 - 정책 후보와 접근성 결과의 분석용 해석
 - 재현 가능한 Jupyter Notebook
 
@@ -35,10 +36,13 @@ Python 3.11 이상을 권장합니다.
 python -m venv .venv
 python -m pip install -r requirements.txt
 python python/fetch_policy_release.py
+python python/run_eda.py
 jupyter notebook notebooks/01_daegu_data_eda.ipynb
 ```
 
 다운로드 스크립트는 `golden-project`의 고정 커밋에서 정책 릴리스를 가져온 뒤 원시 파일 SHA-256을 검증합니다. 검증에 실패하면 분석 파일로 저장하지 않습니다.
+
+EDA 스크립트는 내부 콘텐츠 해시와 데이터 계약을 다시 검사한 후 `outputs/`에 분석용 CSV, 요약 JSON과 그래프를 생성합니다. `outputs/`는 재생성 가능한 로컬 산출물이므로 Git에 커밋하지 않습니다. 주요 해석은 [`docs/EDA_REPORT.md`](./docs/EDA_REPORT.md)에 기록합니다.
 
 ## 저장소 구조
 
