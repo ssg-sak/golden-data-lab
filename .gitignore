@@ -1,7 +1,20 @@
-.venv/
-__pycache__/
-.ipynb_checkpoints/
-datasets/policy_release.json
-outputs/
-*.pbix
+# Data
+cases/*/data/raw/
+cases/*/data/processed/
+!cases/*/data/raw/.gitkeep
+!cases/*/data/processed/.gitkeep
 
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.ipynb_checkpoints/
+
+# Virtual Environment
+venv/
+.venv/
+.env/
+
+# DB
+*.sqlite
+*.db
