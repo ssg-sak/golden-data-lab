@@ -1,5 +1,8 @@
-jupyter==1.1.1
-matplotlib==3.10.3
-pandas==2.3.0
-seaborn==0.13.2
-
+pandas
+geopandas
+matplotlib
+seaborn
+psycopg2-binary
+SQLAlchemy
+openpyxl
+jupyterlab
