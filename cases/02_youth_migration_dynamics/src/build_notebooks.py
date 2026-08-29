@@ -120,7 +120,8 @@ def build() -> list[Path]:
         new_markdown_cell(
             "# CASE 02 Decision Dashboard\n\n"
             "한 페이지 PNG는 같은 의사결정 질문의 정적 재현이다. "
-            "Power BI 파일은 `powerbi/CASE02_Youth_Priority.pbix`다."
+            "산출물은 `evidence/dashboard/01_one_page_decision.png`다. "
+            "시도 단계색지도는 `evidence/figures/01_youth_net_2025.png`다."
         ),
         new_code_cell(
             SETUP

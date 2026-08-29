@@ -1,6 +1,6 @@
 # Golden Data Lab
 
-Golden Data Lab은 여러 도메인의 원천 데이터를 동일한 분석 방법론으로 반복 분석하는 데이터 분석 포트폴리오입니다. SQL 추출부터 데이터 품질, Python 분석, 통계, KPI, Power BI, 실행 제안과 재현성까지 하나의 흐름으로 연결합니다.
+Golden Data Lab은 여러 도메인의 원천 데이터를 동일한 분석 방법론으로 반복 분석하는 데이터 분석 포트폴리오입니다. SQL 추출부터 데이터 품질, Python 분석, 통계, KPI, 한 페이지 시각화, 실행 제안과 재현성까지 하나의 흐름으로 연결합니다.
 
 ## Project Goal
 
@@ -22,7 +22,7 @@ Golden Data Lab은 여러 도메인의 원천 데이터를 동일한 분석 방�
 | 4 | Python EDA | 분포, 추세, 관계와 세그먼트 탐색 |
 | 5 | Statistical Analysis | 가설 검정, 효과 크기와 불확실성 확인 |
 | 6 | KPI & Segmentation | 핵심 지표와 고객·지역 분류 기준 정의 |
-| 7 | Visualization | Power BI 의사결정 대시보드 제작 |
+| 7 | Visualization | matplotlib 한 페이지 PNG 의사결정 대시보드 |
 | 8 | Insight & Action | 검증된 사실을 실행 가능한 제안으로 변환 |
 | 9 | Reproduction | 환경, 데이터 출처와 실행 순서 문서화 |
 
@@ -68,7 +68,7 @@ golden-data-lab/
 │   │   ├── notebooks/
 │   │   ├── src/
 │   │   ├── sql/
-│   │   ├── powerbi/
+│   │   ├── evidence/
 │   │   ├── README.md
 │   │   ├── INSIGHTS.md
 │   │   ├── REPRODUCTION.md
@@ -89,7 +89,6 @@ golden-data-lab/
 - Database: PostgreSQL, DBeaver
 - Analysis: Python, pandas, GeoPandas, JupyterLab, scipy
 - Statistics and Visualization: matplotlib, seaborn, scipy.stats
-- BI: Power BI
 - Reproducibility: Git, GitHub, documented SQL and notebooks
 
 ## Quick Start

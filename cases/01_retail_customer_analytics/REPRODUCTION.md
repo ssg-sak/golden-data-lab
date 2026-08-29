@@ -32,9 +32,9 @@ python cases/01_retail_customer_analytics/src/download_data.py
 1. [`README.md`](./README.md)의 의사결정과 분석 질문을 읽는다.
 2. [`LOAD_GUIDE.md`](./LOAD_GUIDE.md)대로 데이터베이스, raw 테이블, 적재를 수행한다.
 3. `sql/02_validate_raw_load.sql` 마지막에 `PASS`가 나와야 한다.
-4. Power BI 또는 DBeaver 분석용 뷰가 필요하면 `sql/03_analysis_views.sql`을 실행한다.
+4. DBeaver 분석용 뷰가 필요하면 `sql/03_analysis_views.sql`을 실행한다.
 
-Python만으로 3단계 이후를 재현할 수 있다. PostgreSQL은 source of truth 계약과 BI 연결용이다.
+Python만으로 3단계 이후를 재현할 수 있다. PostgreSQL은 SQL Extraction의 source of truth 계약용이다.
 
 ### 3–4. Data quality and EDA
 
@@ -62,7 +62,6 @@ python cases/01_retail_customer_analytics/src/build_stats_notebook.py
 python cases/01_retail_customer_analytics/src/build_kpi_notebook.py
 python cases/01_retail_customer_analytics/src/build_dashboard_notebook.py
 python cases/01_retail_customer_analytics/src/run_later_stages.py
-python cases/01_retail_customer_analytics/src/build_powerbi_pbix.py
 ```
 
 그다음 Jupyter에서 다음을 실행한다.
@@ -84,7 +83,7 @@ python cases/01_retail_customer_analytics/src/build_powerbi_pbix.py
 ### 8–9. Insight and this document
 
 - 해석과 실행 항목: [`INSIGHTS.md`](./INSIGHTS.md)
-- Power BI 페이지 명세: [`powerbi/README.md`](./powerbi/README.md)
+- 한 페이지 화면: [`evidence/dashboard/01_one_page_decision.png`](./evidence/dashboard/01_one_page_decision.png)
 - 실행 기록: [`WORK_LOG.md`](./WORK_LOG.md)
 
 ## Metric contracts that must not drift
@@ -99,5 +98,4 @@ python cases/01_retail_customer_analytics/src/build_powerbi_pbix.py
 
 ## Out of scope for reproduction
 
-- Power BI `.pbix`: [`powerbi/CASE01_Retention_Priority.pbix`](./powerbi/CASE01_Retention_Priority.pbix). 재생성은 `src/build_powerbi_pbix.py`.
 - 원본 날짜를 최신 연도로 바꾸는 작업. 하면 이 사례의 결과가 아니다.

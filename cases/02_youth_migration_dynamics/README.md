@@ -14,7 +14,7 @@
 | 4. Python EDA | 완료 | 실행된 `02_python_eda.ipynb`, 청년 순이동·OD·이동률 |
 | 5. Statistical Analysis | 완료 | 가설 4개, 정의 민감도, 실행된 `03_statistical_analysis.ipynb` |
 | 6. KPI & Segmentation | 완료 | KPI 사전, 4유형 분류, 실행된 `04_kpi_segmentation.ipynb` |
-| 7. Visualization | 완료 | 시도 단계색지도, 한 페이지 PNG, `CASE02_Youth_Priority.pbix` |
+| 7. Visualization | 완료 | 시도 단계색지도, matplotlib 한 페이지 PNG, `05_decision_dashboard.ipynb` |
 | 8. Insight & Action | 완료 | [`INSIGHTS.md`](./INSIGHTS.md) |
 | 9. Reproduction | 완료 | [`REPRODUCTION.md`](./REPRODUCTION.md) |
 
@@ -117,4 +117,4 @@
 
 ## Next Step
 
-실행 근거는 [`WORK_LOG.md`](./WORK_LOG.md), 제안은 [`INSIGHTS.md`](./INSIGHTS.md), 재현은 [`REPRODUCTION.md`](./REPRODUCTION.md)다. 시군구 순이동과 연령별 시도 간 OD는 KOSIS 별도 표이며, 이 부표·이 지도의 단위는 시도이다.
+실행 근거는 [`WORK_LOG.md`](./WORK_LOG.md), 제안은 [`INSIGHTS.md`](./INSIGHTS.md), 재현은 [`REPRODUCTION.md`](./REPRODUCTION.md)다. 한 페이지 화면은 [`evidence/dashboard/01_one_page_decision.png`](./evidence/dashboard/01_one_page_decision.png), 시도 지도는 [`evidence/figures/01_youth_net_2025.png`](./evidence/figures/01_youth_net_2025.png)다. 시군구 순이동과 연령별 시도 간 OD는 KOSIS 별도 표이며, 이 부표·이 지도의 단위는 시도이다.

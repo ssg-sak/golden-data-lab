@@ -159,8 +159,7 @@ PostgreSQL의 `NOTICE`는 PowerShell에서 `NativeCommandError` 형식으로 표
 - 일괄 실행: `src/run_later_stages.py`
 - 해석: `INSIGHTS.md`
 - 재현: `REPRODUCTION.md`
-- Power BI 명세: `powerbi/README.md`
-- Power BI 바이너리: `powerbi/CASE01_Retention_Priority.pbix`
+- 한 페이지 화면: `evidence/dashboard/01_one_page_decision.png`
 - 분석 뷰: `sql/03_analysis_views.sql`
 
 ### 사전 지정 가설 결과
@@ -181,6 +180,10 @@ PostgreSQL의 `NOTICE`는 PowerShell에서 `NativeCommandError` 형식으로 표
 - Champions 1,290명이 식별 매출의 68.1%
 - 재활성화 1순위 Cannot Lose 229명
 
+## 2026-08-29: Power BI 제거
+
+시각화 7단계는 matplotlib 한 페이지 PNG와 `05_decision_dashboard.ipynb`만 남긴다. `powerbi/` 폴더, `.pbix`, `src/build_powerbi_pbix.py`를 삭제했다.
+
 ## 다음 작업
 
-CASE 01은 9단계를 마쳤다. Power BI 바이너리는 `powerbi/CASE01_Retention_Priority.pbix`다. 다음 사례는 CASE 02다.
+CASE 01은 9단계를 마쳤다. 의사결정 화면은 `evidence/dashboard/01_one_page_decision.png`다. 다음 사례는 CASE 02다.

@@ -18,7 +18,7 @@ PostgreSQL 원천 적재는 [CASE 01 PostgreSQL 직접 적재 가이드](./LOAD_
 | 4. Python EDA | 완료 | 실행 완료된 `02_python_eda.ipynb`, 검증된 표와 차트 4개 |
 | 5. Statistical Analysis | 완료 | `03_statistical_analysis.ipynb`, 가설 4개와 민감도 표 |
 | 6. KPI & Segmentation | 완료 | `04_kpi_segmentation.ipynb`, KPI 사전, RFM, 코호트 |
-| 7. Visualization | 완료 | 한 페이지 PNG, `CASE01_Retention_Priority.pbix`, Power BI 명세 |
+| 7. Visualization | 완료 | matplotlib 한 페이지 PNG, `05_decision_dashboard.ipynb` |
 | 8. Insight & Action | 완료 | [`INSIGHTS.md`](./INSIGHTS.md) |
 | 9. Reproduction | 완료 | [`REPRODUCTION.md`](./REPRODUCTION.md) |
 
@@ -129,4 +129,5 @@ SQL Extraction 단계에서는 데이터를 임의로 정제하지 않고 다음
 
 PostgreSQL 적재부터 재현 문서까지 CASE 01을 완료했다. 실행 근거는 [`WORK_LOG.md`](./WORK_LOG.md), 실행 제안은 [`INSIGHTS.md`](./INSIGHTS.md), 재현 순서는 [`REPRODUCTION.md`](./REPRODUCTION.md)다.
 
-Power BI 보고서는 [`powerbi/CASE01_Retention_Priority.pbix`](./powerbi/CASE01_Retention_Priority.pbix)다. 명세와 재생성은 [`powerbi/README.md`](./powerbi/README.md)를 따른다. 다음 사례는 CASE 02 기획을 분석 질문과 데이터 계약으로 구체화하는 것이다.
+한 페이지 화면은 [`evidence/dashboard/01_one_page_decision.png`](./evidence/dashboard/01_one_page_decision.png)다. 노트북은 [`notebooks/05_decision_dashboard.ipynb`](./notebooks/05_decision_dashboard.ipynb)다. 다음 사례는 CASE 02다.
+    

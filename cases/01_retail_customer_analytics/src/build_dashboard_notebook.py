@@ -34,7 +34,7 @@ notebook["cells"] = [
 
 ## tl;dr
 
-이 노트북은 통계와 KPI 결과를 한 페이지로 압축합니다. Power BI Desktop용 데이터 모델·측정값 명세는 `powerbi/README.md`에 있습니다. 여기서 생성하는 PNG는 같은 의사결정 질문을 재현 가능한 정적 화면으로 남깁니다.
+이 노트북은 통계와 KPI 결과를 matplotlib 한 페이지 PNG로 압축합니다. 산출물은 `evidence/dashboard/01_one_page_decision.png`입니다.
 """
     ),
     code(
@@ -97,7 +97,7 @@ display(kpis.priority.style.format({
     "median_recency": "{:.0f}",
 }))
 display(kpis.values)
-print("Power BI 연결은 sql/03_analysis_views.sql와 powerbi/README.md를 사용합니다.")
+print("분석용 SQL 뷰는 sql/03_analysis_views.sql이다. 시각화 source of truth는 이 PNG다.")
 """
     ),
     md(
@@ -105,7 +105,7 @@ print("Power BI 연결은 sql/03_analysis_views.sql와 powerbi/README.md를 사�
 ### Interpretation boundary
 
 - 이 화면은 관측 기간의 완료 매출과 RFM 라벨만 보여 줍니다.
-- Power BI에서 최신 날짜로 바꾸거나 예측 시각을 추가하지 않습니다.
+- 날짜를 최신 연도로 바꾸거나 예측 시각을 추가하지 않습니다.
 - 실행 제안의 문장 근거는 `INSIGHTS.md`로 이어집니다.
 """
     ),

@@ -44,6 +44,21 @@
 - CASE 01 후보: 순매출, 주문 수, 평균 주문금액, 재구매율, 취소·반품률
 - 주의: 계산식, 기간, 분모, 포함·제외 조건이 없으면 같은 이름의 KPI도 서로 다른 숫자가 된다.
 
+### Visualization
+
+검증된 숫자를 의사결정자가 한 장으로 볼 수 있게 그리는 단계다. 이 프로젝트에서는 matplotlib로 PNG를 만들고 Jupyter 노트북에 같은 화면을 남긴다.
+
+- 쉬운 뜻: 핵심 숫자와 우선순위를 한 페이지에 모아 보여 주는 그림
+- CASE 01 예시: `notebooks/05_decision_dashboard.ipynb`, `evidence/dashboard/01_one_page_decision.png`
+- 주의: 차트 도구를 바꿔 날짜를 최신으로 바꾸거나, 데이터에 없는 예측을 넣지 않는다.
+
+### Insight & Action
+
+검증된 사실을 실행 가능한 제안으로 바꾸는 단계다. 숫자의 근거는 앞 단계에 두고, 할 수 없는 말은 `Limitation`으로 적는다.
+
+- CASE 01 예시: [`INSIGHTS.md`](./INSIGHTS.md)
+- 주의: 상관을 인과로 바꾸거나, 없는 원가로 이익을 단정하지 않는다.
+
 ## 2. 데이터 구조와 SQL 용어
 
 ### PostgreSQL, DBeaver, SQL의 차이

@@ -10,4 +10,3 @@ jupyterlab
 nbformat
 nbclient
 ipykernel
-pbix-mcp
