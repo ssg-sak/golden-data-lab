@@ -39,8 +39,6 @@ def main() -> int:
 
     processed = CASE_DIR / "data" / "processed"
     processed.mkdir(parents=True, exist_ok=True)
-    powerbi_data = CASE_DIR / "powerbi" / "data"
-    powerbi_data.mkdir(parents=True, exist_ok=True)
     exports = {
         "youth_profile_2025.csv": kpis.youth_profile,
         "typology_summary.csv": kpis.typology_summary,
@@ -54,8 +52,6 @@ def main() -> int:
     }
     for name, frame in exports.items():
         frame.to_csv(processed / name, index=False, encoding="utf-8-sig")
-        if name != "quality_checks.csv":
-            frame.to_csv(powerbi_data / name, index=False, encoding="utf-8-sig")
 
     evidence = CASE_DIR / "evidence"
     figures = evidence / "figures"

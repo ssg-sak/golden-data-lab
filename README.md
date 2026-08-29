@@ -48,7 +48,7 @@ UCI Online Retail II의 약 106만 건 거래 라인을 이용해 고객과 매�
 
 - 기간: 연령·시도 추세 2005-2025, 시도×연령 순이동과 OD는 2025
 - 핵심 주제: 청년 정의, 등록 이동, 수도권, 20대/30대 부호, 지역 유형
-- 현재 상태: **진행 중** — 질문·정의 잠금, PostgreSQL 적재·검증, 품질·통계·KPI, 인사이트 초안까지 있음. Power BI `.pbix`와 실행된 노트북은 아직 없음
+- 현재 상태: 9단계 완료 (적재·품질·EDA·통계·KPI·시도 지도·대시보드·인사이트·재현)
 - [CASE 02 문서](./cases/02_youth_migration_dynamics/README.md)
 - [인사이트와 실행 제안](./cases/02_youth_migration_dynamics/INSIGHTS.md)
 - [재현 절차](./cases/02_youth_migration_dynamics/REPRODUCTION.md)

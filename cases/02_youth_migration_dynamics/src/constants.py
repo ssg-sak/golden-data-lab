@@ -92,3 +92,36 @@ AGE_LABEL_MAP = {
 # Official 2025 press headline used only as a reconciliation target.
 HEADLINE_TOTAL_MOVERS_2025 = 6_117_784
 HEADLINE_YOY_PCT_2025 = -2.6
+
+GEOJSON_DOWNLOAD_URL = (
+    "https://raw.githubusercontent.com/southkorea/southkorea-maps/master/"
+    "kostat/2018/json/skorea-provinces-2018-geo.json"
+)
+GEOJSON_SOURCE = (
+    "Statistics Korea 2018 sido boundaries, packaged by southkorea/southkorea-maps"
+)
+RAW_GEOJSON_FILE_NAME = "skorea-provinces-2018-geo.json"
+PREPARED_GEOJSON_FILE_NAME = "sido_boundaries.geojson"
+EXPECTED_GEOJSON_SHA256 = "6065B2B8517939F1406ED9BE1953265F9D580649489FBE8440913CB1E043C31F"
+EXPECTED_GEOJSON_SIZE_BYTES = 7_537_090
+
+# KOSTAT 2018 province codes in the GeoJSON. Names match SIDOS.
+KOSTAT_CODE_TO_SIDO = {
+    "11": "서울",
+    "21": "부산",
+    "22": "대구",
+    "23": "인천",
+    "24": "광주",
+    "25": "대전",
+    "26": "울산",
+    "29": "세종",
+    "31": "경기",
+    "32": "강원",
+    "33": "충북",
+    "34": "충남",
+    "35": "전북",
+    "36": "전남",
+    "37": "경북",
+    "38": "경남",
+    "39": "제주",
+}

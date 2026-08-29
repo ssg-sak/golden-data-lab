@@ -87,6 +87,29 @@ class OfficialAnnexTest(unittest.TestCase):
         years = set(self.tables.monthly["year"])
         self.assertEqual(years, {2023, 2024, 2025})
 
+    def test_sido_map_joins_all_regions(self):
+        from sido_map import join_youth_net
+
+        joined = join_youth_net(self.prepared.youth_profile)
+        self.assertEqual(set(joined["sido"]), set(SIDOS))
+        self.assertFalse(joined["net_youth_20_39"].isna().any())
+        seoul = joined.set_index("sido").loc["서울"]
+        self.assertEqual(int(seoul["net_youth_20_39"]), 17207)
+
+
+GEO = CASE_DIR / "data" / "geo" / "sido_boundaries.geojson"
+
+
+@unittest.skipUnless(GEO.is_file(), "prepared sido geojson missing")
+class SidoBoundaryTest(unittest.TestCase):
+    def test_seventeen_polygons(self):
+        import geopandas as gpd
+
+        frame = gpd.read_file(GEO)
+        self.assertEqual(len(frame), 17)
+        self.assertEqual(set(frame["sido"]), set(SIDOS))
+        self.assertFalse(frame.geometry.is_empty.any())
+
 
 if __name__ == "__main__":
     unittest.main()

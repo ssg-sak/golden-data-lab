@@ -15,9 +15,21 @@ SETUP = """\
 from pathlib import Path
 import sys
 
-CASE_DIR = Path.cwd()
-if CASE_DIR.name == "notebooks":
-    CASE_DIR = CASE_DIR.parent
+CASE_NAME = "02_youth_migration_dynamics"
+RAW_NAME = "2025_domestic_migration_statistics.xlsx"
+candidates = [
+    Path.cwd(),
+    Path.cwd().parent,
+    Path.cwd() / "cases" / CASE_NAME,
+]
+CASE_DIR = next(
+    (path.resolve() for path in candidates if (path / "data" / "raw" / RAW_NAME).exists()),
+    None,
+)
+if CASE_DIR is None:
+    raise FileNotFoundError(
+        f"{RAW_NAME}를 찾지 못했습니다. 저장소 루트 또는 notebooks 폴더에서 실행하세요."
+    )
 sys.path.insert(0, str(CASE_DIR / "src"))
 
 from constants import RAW_FILE_NAME
@@ -105,10 +117,15 @@ def build() -> list[Path]:
         new_code_cell("kpis.dictionary"),
     ]
     dash = [
-        new_markdown_cell("# CASE 02 Decision Dashboard"),
+        new_markdown_cell(
+            "# CASE 02 Decision Dashboard\n\n"
+            "한 페이지 PNG는 같은 의사결정 질문의 정적 재현이다. "
+            "Power BI 파일은 `powerbi/CASE02_Youth_Priority.pbix`다."
+        ),
         new_code_cell(
             SETUP
             + """
+from IPython.display import Image, display
 from decision_dashboard import save_decision_dashboard
 from kpi_segmentation import run_kpi_segmentation
 from statistical_analysis import run_statistical_analysis
@@ -117,8 +134,14 @@ stats = run_statistical_analysis(tables, prepared)
 kpis = run_kpi_segmentation(tables, prepared)
 path = CASE_DIR / "evidence" / "dashboard" / "01_one_page_decision.png"
 save_decision_dashboard(tables, prepared, stats, kpis, path)
+display(Image(filename=str(path)))
 print(path)
 """
+        ),
+        new_code_cell("kpis.priority"),
+        new_markdown_cell(
+            "시도 간 상위 경로는 전 연령이다. 청년 순이동 막대와 같은 화면에 두더라도 연령을 섞어 읽지 않는다. "
+            "해석은 `INSIGHTS.md`다."
         ),
     ]
     return [

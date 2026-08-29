@@ -62,6 +62,9 @@ def download_official_annex(output_path: Path | None = None) -> Path:
 if __name__ == "__main__":
     try:
         download_official_annex()
+        from download_sido_geojson import download_sido_geojson
+
+        download_sido_geojson()
     except Exception as exc:
         print(f"DOWNLOAD FAILED: {exc}", file=sys.stderr)
         raise SystemExit(1) from exc
