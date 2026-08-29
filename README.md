@@ -2,8 +2,6 @@
 
 Golden Data Lab은 여러 도메인의 원천 데이터를 동일한 분석 방법론으로 반복 분석하는 데이터 분석 포트폴리오입니다. SQL 추출부터 데이터 품질, Python 분석, 통계, KPI, Power BI, 실행 제안과 재현성까지 하나의 흐름으로 연결합니다.
 
-이력서·면접에서 이 저장소를 여는 순서와, 지금 말할 수 있는 범위는 [커리어 포트폴리오 안내](./docs/PORTFOLIO.md)에 있습니다. **CASE 01은 9단계가 끝났고, CASE 02는 진행 중**입니다.
-
 ## Project Goal
 
 - 비즈니스 질문을 측정 가능한 분석 질문으로 바꾸기
@@ -55,7 +53,6 @@ UCI Online Retail II의 약 106만 건 거래 라인을 이용해 고객과 매�
 - [인사이트와 실행 제안](./cases/02_youth_migration_dynamics/INSIGHTS.md)
 - [재현 절차](./cases/02_youth_migration_dynamics/REPRODUCTION.md)
 - [분석 용어 학습 가이드](./cases/02_youth_migration_dynamics/STUDY_GUIDE.md)
-- [커리어 포트폴리오 안내](./docs/PORTFOLIO.md)
 
 청년 OD(전출지×전입지×연령)는 이 부표에 없습니다. 등록 이동을 주거 의향이나 정책 효과로 단정하지 않습니다.
 
@@ -80,8 +77,7 @@ golden-data-lab/
 ├── common/
 ├── docs/
 │   ├── methodology.md
-│   ├── case_template.md
-│   └── PORTFOLIO.md
+│   └── case_template.md
 ├── .gitignore
 └── requirements.txt
 ```

@@ -1,6 +1,6 @@
 # CASE 02: Youth Migration & Regional Dynamics
 
-이 사례는 Golden Data Lab의 [9단계 표준 분석 방법론](../../docs/methodology.md)을 따른다. **아직 작업이 끝나지 않았다.** 파이프라인·SQL 검증·인사이트 초안은 있고, Power BI 파일과 실행된 노트북은 없다. 이력서에 쓰는 범위는 [커리어 포트폴리오 안내](../../docs/PORTFOLIO.md)를 따른다.
+이 사례는 Golden Data Lab의 [9단계 표준 분석 방법론](../../docs/methodology.md)을 따른다. 아직 작업이 끝나지 않았다. 파이프라인·SQL 검증·인사이트 초안은 있고, Power BI 파일과 실행된 노트북은 없다.
 
 분석 용어는 [CASE 02 분석 용어 학습 가이드](./STUDY_GUIDE.md)를 참고한다. PostgreSQL 적재는 [LOAD_GUIDE.md](./LOAD_GUIDE.md)를 따른다. 실행 내역은 [WORK_LOG.md](./WORK_LOG.md)에 있다.
 
