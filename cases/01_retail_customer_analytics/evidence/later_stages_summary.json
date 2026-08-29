@@ -1,0 +1,370 @@
+{
+  "snapshot_date": "2011-12-10T12:50:00",
+  "yoy_p_value": 0.51953125,
+  "yoy_rank_biserial": 0.24242424242424243,
+  "yoy_median_ratio": 1.0266779447212697,
+  "kruskal_p_value": 3.967040956750878e-25,
+  "kruskal_epsilon_squared": 0.0034380380325257772,
+  "uk_cliffs_delta": -0.28378089784354676,
+  "uk_cliffs_delta_label": "small",
+  "customer_gini": 0.7416255092883681,
+  "customer_gini_ci": [
+    0.7121488695797704,
+    0.76880240518919
+  ],
+  "top_10pct_customer_share": 0.6392565024050506,
+  "top_10_stockcode_share": 0.10275719739932561,
+  "customer_gini_without_top_1pct": 0.640017039912741,
+  "returning_customer_top_10pct_share": 0.8568585573679796,
+  "cancel_cramers_v": 0.05089551829529122,
+  "uk_cancel_rate": 0.14846290422327288,
+  "non_uk_cancel_rate": 0.21486162562649816,
+  "sensitivity_material_change": false,
+  "kpis": {
+    "Gross sales": 20972594.567999996,
+    "Observed net transaction value": 19287250.568,
+    "Completed orders": 40911.0,
+    "AOV": 512.6394995966854,
+    "Identified customers": 5878.0,
+    "Identified-customer revenue share": 0.8460292845727797,
+    "Repeat-customer rate": 0.7276284450493365,
+    "UK revenue share": 0.8521109640991943,
+    "Negative-value-to-gross ratio": 0.08037715908417309,
+    "Peak complete-month gross sales": 1509496.33
+  },
+  "segments": [
+    {
+      "segment": "Champions",
+      "action": "\uc720\uc9c0",
+      "customers": 1290,
+      "orders": 22611,
+      "revenue": 12083792.495,
+      "median_recency": 16.0,
+      "median_frequency": 11.0,
+      "median_monetary": 4049.14,
+      "customer_share": 0.2194624022,
+      "revenue_share": 0.6810291502
+    },
+    {
+      "segment": "Loyal",
+      "action": "\uc720\uc9c0",
+      "customers": 703,
+      "orders": 5563,
+      "revenue": 1915519.145,
+      "median_recency": 78.0,
+      "median_frequency": 6.0,
+      "median_monetary": 1733.89,
+      "customer_share": 0.1195985029,
+      "revenue_share": 0.1079565357
+    },
+    {
+      "segment": "Potential",
+      "action": "\uc721\uc131",
+      "customers": 232,
+      "orders": 748,
+      "revenue": 554476.932,
+      "median_recency": 60.0,
+      "median_frequency": 3.0,
+      "median_monetary": 1688.765,
+      "customer_share": 0.0394692072,
+      "revenue_share": 0.0312497053
+    },
+    {
+      "segment": "New / Recent",
+      "action": "\uc721\uc131",
+      "customers": 446,
+      "orders": 654,
+      "revenue": 394958.6,
+      "median_recency": 26.0,
+      "median_frequency": 1.0,
+      "median_monetary": 372.75,
+      "customer_share": 0.0758761483,
+      "revenue_share": 0.0222594289
+    },
+    {
+      "segment": "Cannot Lose",
+      "action": "\uc7ac\ud65c\uc131\ud654",
+      "customers": 229,
+      "orders": 2126,
+      "revenue": 1021613.1020000001,
+      "median_recency": 333.0,
+      "median_frequency": 7.0,
+      "median_monetary": 2282.28,
+      "customer_share": 0.0389588295,
+      "revenue_share": 0.057576982
+    },
+    {
+      "segment": "At Risk",
+      "action": "\uc7ac\ud65c\uc131\ud654",
+      "customers": 599,
+      "orders": 2099,
+      "revenue": 616181.71,
+      "median_recency": 377.0,
+      "median_frequency": 3.0,
+      "median_monetary": 800.67,
+      "customer_share": 0.10190541,
+      "revenue_share": 0.0347273181
+    },
+    {
+      "segment": "Hibernating High Value",
+      "action": "\uc7ac\ud65c\uc131\ud654",
+      "customers": 65,
+      "orders": 106,
+      "revenue": 183878.891,
+      "median_recency": 423.0,
+      "median_frequency": 2.0,
+      "median_monetary": 1857.83,
+      "customer_share": 0.0110581831,
+      "revenue_share": 0.0103632105
+    },
+    {
+      "segment": "Need Attention",
+      "action": "\uad00\ucc30",
+      "customers": 856,
+      "orders": 2016,
+      "revenue": 491566.342,
+      "median_recency": 71.5,
+      "median_frequency": 2.0,
+      "median_monetary": 541.785,
+      "customer_share": 0.1456277645,
+      "revenue_share": 0.0277041341
+    },
+    {
+      "segment": "Hibernating",
+      "action": "\uc800\uc6b0\uc120",
+      "customers": 1458,
+      "orders": 1822,
+      "revenue": 481441.961,
+      "median_recency": 436.0,
+      "median_frequency": 1.0,
+      "median_monetary": 264.975,
+      "customer_share": 0.2480435522,
+      "revenue_share": 0.0271335352
+    }
+  ],
+  "priority": [
+    {
+      "segment": "Champions",
+      "action": "\uc720\uc9c0",
+      "customers": 1290,
+      "revenue": 12083792.495,
+      "customer_share": 0.2194624022,
+      "revenue_share": 0.6810291502,
+      "median_recency": 16.0,
+      "priority_note": "\ud604\uc7ac \ub9e4\ucd9c \uae30\uc5ec\uac00 \ud070 \ud65c\uc131 \uace0\uac1d. \uc11c\ube44\uc2a4 \uc720\uc9c0 \uc6b0\uc120."
+    },
+    {
+      "segment": "Loyal",
+      "action": "\uc720\uc9c0",
+      "customers": 703,
+      "revenue": 1915519.145,
+      "customer_share": 0.1195985029,
+      "revenue_share": 0.1079565357,
+      "median_recency": 78.0,
+      "priority_note": "\ud604\uc7ac \ub9e4\ucd9c \uae30\uc5ec\uac00 \ud070 \ud65c\uc131 \uace0\uac1d. \uc11c\ube44\uc2a4 \uc720\uc9c0 \uc6b0\uc120."
+    },
+    {
+      "segment": "Cannot Lose",
+      "action": "\uc7ac\ud65c\uc131\ud654",
+      "customers": 229,
+      "revenue": 1021613.1020000001,
+      "customer_share": 0.0389588295,
+      "revenue_share": 0.057576982,
+      "median_recency": 333.0,
+      "priority_note": "\uacfc\uac70 \uac00\uce58\uac00 \uc788\uc73c\ub098 \ucd5c\uadfc\uc131\uc774 \ub0ae\uc74c. \uc7ac\ud65c\uc131\ud654 \ud6c4\ubcf4."
+    },
+    {
+      "segment": "At Risk",
+      "action": "\uc7ac\ud65c\uc131\ud654",
+      "customers": 599,
+      "revenue": 616181.71,
+      "customer_share": 0.10190541,
+      "revenue_share": 0.0347273181,
+      "median_recency": 377.0,
+      "priority_note": "\uacfc\uac70 \uac00\uce58\uac00 \uc788\uc73c\ub098 \ucd5c\uadfc\uc131\uc774 \ub0ae\uc74c. \uc7ac\ud65c\uc131\ud654 \ud6c4\ubcf4."
+    },
+    {
+      "segment": "Hibernating High Value",
+      "action": "\uc7ac\ud65c\uc131\ud654",
+      "customers": 65,
+      "revenue": 183878.891,
+      "customer_share": 0.0110581831,
+      "revenue_share": 0.0103632105,
+      "median_recency": 423.0,
+      "priority_note": "\uacfc\uac70 \uac00\uce58\uac00 \uc788\uc73c\ub098 \ucd5c\uadfc\uc131\uc774 \ub0ae\uc74c. \uc7ac\ud65c\uc131\ud654 \ud6c4\ubcf4."
+    }
+  ],
+  "hypothesis_summary": [
+    {
+      "hypothesis": "H1. Complete-month 2011 revenue differs from 2010",
+      "unit": "paired calendar months Jan-Nov",
+      "test": "Wilcoxon signed-rank",
+      "p_value": 0.51953125,
+      "effect": 0.2424242424,
+      "effect_name": "rank-biserial (2011 vs 2010)",
+      "significant_at_0.05": false
+    },
+    {
+      "hypothesis": "H2. Invoice revenue differs by calendar month",
+      "unit": "completed invoices in complete months",
+      "test": "Kruskal-Wallis",
+      "p_value": 3.967040957e-25,
+      "effect": 0.003438038,
+      "effect_name": "epsilon-squared",
+      "significant_at_0.05": true
+    },
+    {
+      "hypothesis": "H3. UK and non-UK invoice revenue distributions differ",
+      "unit": "completed invoices in complete months",
+      "test": "Mann-Whitney U",
+      "p_value": 1.187511302e-166,
+      "effect": -0.2837808978,
+      "effect_name": "Cliff's delta (small)",
+      "significant_at_0.05": true
+    },
+    {
+      "hypothesis": "H4. Invoice cancellation is associated with UK vs non-UK",
+      "unit": "invoices",
+      "test": "Chi-square",
+      "p_value": 1.111957935e-32,
+      "effect": 0.0508955183,
+      "effect_name": "Cramer's V",
+      "significant_at_0.05": true
+    }
+  ],
+  "sensitivity": [
+    {
+      "scenario": "baseline",
+      "rows_raw": 1067371.0,
+      "rows_sales": 1041670.0,
+      "gross_sales": 20972594.567999996,
+      "uk_share": 0.8521109641,
+      "customer_gini": 0.7416255093,
+      "top_10pct_customer_share": 0.6392565024,
+      "top_10_stockcode_share": 0.1027571974,
+      "repeat_customer_rate": 0.727628445,
+      "negative_to_gross": 0.0803771591,
+      "material_change_vs_baseline": false
+    },
+    {
+      "scenario": "drop_duplicate_extras",
+      "rows_raw": 1033036.0,
+      "rows_sales": 1007913.0,
+      "gross_sales": 20476260.448,
+      "uk_share": 0.8502624862,
+      "customer_gini": 0.7415334514,
+      "top_10pct_customer_share": 0.6392667569,
+      "top_10_stockcode_share": 0.1029250339,
+      "repeat_customer_rate": 0.7238856754,
+      "negative_to_gross": 0.0791697451,
+      "material_change_vs_baseline": false
+    },
+    {
+      "scenario": "exclude_flag_mismatch",
+      "rows_raw": 1063913.0,
+      "rows_sales": 1041670.0,
+      "gross_sales": 20972594.567999996,
+      "uk_share": 0.8521109641,
+      "customer_gini": 0.7416255093,
+      "top_10pct_customer_share": 0.6392565024,
+      "top_10_stockcode_share": 0.1027571974,
+      "repeat_customer_rate": 0.727628445,
+      "negative_to_gross": 0.0803771591,
+      "material_change_vs_baseline": false
+    }
+  ],
+  "yoy_pairs": [
+    {
+      "calendar_month": 1,
+      "revenue_2010": 652708.502,
+      "revenue_2011": 691364.56,
+      "diff_2011_minus_2010": 38656.0580000001,
+      "ratio_2011_over_2010": 1.0592240761
+    },
+    {
+      "calendar_month": 2,
+      "revenue_2010": 553339.736,
+      "revenue_2011": 523631.89,
+      "diff_2011_minus_2010": -29707.846,
+      "ratio_2011_over_2010": 0.9463117429
+    },
+    {
+      "calendar_month": 3,
+      "revenue_2010": 833570.131,
+      "revenue_2011": 717639.36,
+      "diff_2011_minus_2010": -115930.7710000001,
+      "ratio_2011_over_2010": 0.8609225946
+    },
+    {
+      "calendar_month": 4,
+      "revenue_2010": 681528.992,
+      "revenue_2011": 537808.621,
+      "diff_2011_minus_2010": -143720.3709999999,
+      "ratio_2011_over_2010": 0.7891206791
+    },
+    {
+      "calendar_month": 5,
+      "revenue_2010": 659858.86,
+      "revenue_2011": 770536.02,
+      "diff_2011_minus_2010": 110677.16,
+      "ratio_2011_over_2010": 1.1677285352
+    },
+    {
+      "calendar_month": 6,
+      "revenue_2010": 752270.14,
+      "revenue_2011": 761739.9,
+      "diff_2011_minus_2010": 9469.76,
+      "ratio_2011_over_2010": 1.0125882439
+    },
+    {
+      "calendar_month": 7,
+      "revenue_2010": 650712.94,
+      "revenue_2011": 719221.191,
+      "diff_2011_minus_2010": 68508.251,
+      "ratio_2011_over_2010": 1.1052818329
+    },
+    {
+      "calendar_month": 8,
+      "revenue_2010": 697274.91,
+      "revenue_2011": 759138.38,
+      "diff_2011_minus_2010": 61863.47,
+      "ratio_2011_over_2010": 1.0887217783
+    },
+    {
+      "calendar_month": 9,
+      "revenue_2010": 924333.0109999999,
+      "revenue_2011": 1058590.172,
+      "diff_2011_minus_2010": 134257.1610000001,
+      "ratio_2011_over_2010": 1.1452476103
+    },
+    {
+      "calendar_month": 10,
+      "revenue_2010": 1165483.91,
+      "revenue_2011": 1154979.3,
+      "diff_2011_minus_2010": -10504.6099999999,
+      "ratio_2011_over_2010": 0.9909869112
+    },
+    {
+      "calendar_month": 11,
+      "revenue_2010": 1470272.482,
+      "revenue_2011": 1509496.33,
+      "diff_2011_minus_2010": 39223.848,
+      "ratio_2011_over_2010": 1.0266779447
+    }
+  ],
+  "peak_by_year": [
+    {
+      "year": 2010,
+      "Month": "2010-11-01T00:00:00.000",
+      "calendar_month": 11,
+      "revenue": 1470272.482
+    },
+    {
+      "year": 2011,
+      "Month": "2011-11-01T00:00:00.000",
+      "calendar_month": 11,
+      "revenue": 1509496.33
+    }
+  ],
+  "cohort_month1_median": 0.2037037037037037
+}

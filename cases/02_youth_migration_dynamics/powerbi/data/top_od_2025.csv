@@ -1,0 +1,11 @@
+﻿origin,destination,movers,flow_block
+서울,경기,276867,capital_to_capital
+경기,서울,235668,capital_to_capital
+경기,인천,73089,capital_to_capital
+인천,경기,57580,capital_to_capital
+서울,인천,46570,capital_to_capital
+부산,경남,43163,noncapital_to_noncapital
+경남,부산,40742,noncapital_to_noncapital
+경북,대구,37837,noncapital_to_noncapital
+경기,충남,36471,capital_to_noncapital
+인천,서울,34098,capital_to_capital

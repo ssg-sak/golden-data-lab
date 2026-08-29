@@ -1,0 +1,15 @@
+﻿priority_group,sido,typology_ko,net_youth_20_39,net_20s,net_30s,net_total,is_capital
+"Early-career inflow, later outflow",서울,초입 유입·후기 유출형,17207,35937,-18730,-26769,True
+Youth inflow (20s and 30s),경기,청년 유입형,21053,7439,13614,32970,True
+Youth inflow (20s and 30s),인천,청년 유입형,12472,5004,7468,32264,True
+Youth inflow (20s and 30s),충북,청년 유입형,2543,450,2093,10789,False
+"20s outflow, 30s inflow",충남,후기 정착형,292,-1133,1425,8266,False
+"20s outflow, 30s inflow",울산,후기 정착형,-1112,-1154,42,-5474,False
+"20s outflow, 30s inflow",전남,후기 정착형,-4197,-5094,897,1334,False
+"20s outflow, 30s inflow",대구,후기 정착형,-4673,-4884,211,-4272,False
+"20s outflow, 30s inflow",경남,후기 정착형,-8545,-9129,584,-7577,False
+Youth net outflow,경북,청년 유출형,-10759,-8839,-1920,-9214,False
+Youth net outflow,광주,청년 유출형,-8034,-5227,-2807,-13678,False
+Youth net outflow,부산,청년 유출형,-7228,-4510,-2718,-12181,False
+Youth net outflow,전북,청년 유출형,-6074,-5439,-635,-3575,False
+Youth net outflow,강원,청년 유출형,-4177,-3765,-412,-1387,False

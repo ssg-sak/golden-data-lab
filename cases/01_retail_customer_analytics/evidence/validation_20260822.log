@@ -1,0 +1,353 @@
+********** 孽府 **********
+SELECT '00_execution_identity' AS check_name,
+       current_database() AS database_name,
+       current_user AS database_user,
+       version() AS postgres_version,
+       statement_timestamp() AS validation_started_at;
+**************************
+
+      check_name       |  database_name  | database_user |                            postgres_version                             |     validation_started_at     
+-----------------------+-----------------+---------------+-------------------------------------------------------------------------+-------------------------------
+ 00_execution_identity | golden_data_lab | postgres      | PostgreSQL 18.4 on x86_64-windows, compiled by msvc-19.44.35227, 64-bit | 2026-08-22 09:03:57.410575+09
+(1俺 青)
+
+********** 孽府 **********
+SELECT '00_load_audit' AS check_name,
+       load_id,
+       source_file_name,
+       source_sha256,
+       source_size_bytes,
+       expected_row_count,
+       loaded_row_count,
+       sheet_row_counts,
+       started_at,
+       finished_at,
+       database_user,
+       loader_version,
+       status
+FROM retail.load_audit
+ORDER BY load_id DESC
+LIMIT 1;
+**************************
+
+  check_name   | load_id |   source_file_name    |                          source_sha256                           | source_size_bytes | expected_row_count | loaded_row_count |                   sheet_row_counts                   |          started_at           |          finished_at          | database_user | loader_version | status  
+---------------+---------+-----------------------+------------------------------------------------------------------+-------------------+--------------------+------------------+------------------------------------------------------+-------------------------------+-------------------------------+---------------+----------------+---------
+ 00_load_audit |       1 | online_retail_II.xlsx | BCBE73B35F5B7BABF197FB0CB983A11F5D9FF929078D4AA53D171B1F2DF2E980 |          45622278 |            1067371 |          1067371 | {"Year 2009-2010": 525461, "Year 2010-2011": 541910} | 2026-08-22 08:59:29.977787+09 | 2026-08-22 09:01:06.516212+09 | postgres      | 1.0.0          | success
+(1俺 青)
+
+********** 孽府 **********
+SELECT '01_row_count_by_sheet' AS check_name,
+       source_sheet,
+       count(*) AS actual_rows,
+       CASE source_sheet
+           WHEN 'Year 2009-2010' THEN 525461
+           WHEN 'Year 2010-2011' THEN 541910
+       END AS expected_rows,
+       count(*) = CASE source_sheet
+           WHEN 'Year 2009-2010' THEN 525461
+           WHEN 'Year 2010-2011' THEN 541910
+       END AS passed
+FROM retail.online_retail_raw
+GROUP BY source_sheet
+ORDER BY source_sheet;
+**************************
+
+      check_name       |  source_sheet  | actual_rows | expected_rows | passed 
+-----------------------+----------------+-------------+---------------+--------
+ 01_row_count_by_sheet | Year 2009-2010 |      525461 |        525461 | t
+ 01_row_count_by_sheet | Year 2010-2011 |      541910 |        541910 | t
+(2俺 青)
+
+********** 孽府 **********
+SELECT '01_total_row_count' AS check_name,
+       count(*) AS actual_rows,
+       1067371::bigint AS expected_rows,
+       count(*) = 1067371 AS passed
+FROM retail.online_retail_raw;
+**************************
+
+     check_name     | actual_rows | expected_rows | passed 
+--------------------+-------------+---------------+--------
+ 01_total_row_count |     1067371 |       1067371 | t
+(1俺 青)
+
+********** 孽府 **********
+WITH null_counts AS (
+    SELECT count(*) AS total_rows,
+           count(*) FILTER (WHERE invoice IS NULL) AS invoice,
+           count(*) FILTER (WHERE stock_code IS NULL) AS stock_code,
+           count(*) FILTER (WHERE description IS NULL) AS description,
+           count(*) FILTER (WHERE quantity IS NULL) AS quantity,
+           count(*) FILTER (WHERE invoice_date IS NULL) AS invoice_date,
+           count(*) FILTER (WHERE price IS NULL) AS price,
+           count(*) FILTER (WHERE customer_id IS NULL) AS customer_id,
+           count(*) FILTER (WHERE country IS NULL) AS country
+    FROM retail.online_retail_raw
+)
+SELECT '02_null_profile' AS check_name,
+       metric.column_name,
+       metric.null_rows,
+       round(100.0 * metric.null_rows / null_counts.total_rows, 4) AS null_pct
+FROM null_counts
+CROSS JOIN LATERAL (VALUES
+    ('invoice', invoice),
+    ('stock_code', stock_code),
+    ('description', description),
+    ('quantity', quantity),
+    ('invoice_date', invoice_date),
+    ('price', price),
+    ('customer_id', customer_id),
+    ('country', country)
+) AS metric(column_name, null_rows)
+ORDER BY metric.column_name;
+**************************
+
+   check_name    | column_name  | null_rows | null_pct 
+-----------------+--------------+-----------+----------
+ 02_null_profile | country      |         0 |   0.0000
+ 02_null_profile | customer_id  |    243007 |  22.7669
+ 02_null_profile | description  |      4382 |   0.4105
+ 02_null_profile | invoice      |         0 |   0.0000
+ 02_null_profile | invoice_date |         0 |   0.0000
+ 02_null_profile | price        |         0 |   0.0000
+ 02_null_profile | quantity     |         0 |   0.0000
+ 02_null_profile | stock_code   |         0 |   0.0000
+(8俺 青)
+
+********** 孽府 **********
+SELECT '03_invoice_date_range' AS check_name,
+       min(invoice_date) AS min_invoice_date,
+       max(invoice_date) AS max_invoice_date
+FROM retail.online_retail_raw;
+**************************
+
+      check_name       |  min_invoice_date   |  max_invoice_date   
+-----------------------+---------------------+---------------------
+ 03_invoice_date_range | 2009-12-01 07:45:00 | 2011-12-09 12:50:00
+(1俺 青)
+
+********** 孽府 **********
+SELECT '03_monthly_row_count' AS check_name,
+       date_trunc('month', invoice_date)::date AS invoice_month,
+       count(*) AS row_count
+FROM retail.online_retail_raw
+GROUP BY 2
+ORDER BY 2;
+**************************
+
+      check_name      | invoice_month | row_count 
+----------------------+---------------+-----------
+ 03_monthly_row_count | 2009-12-01    |     45228
+ 03_monthly_row_count | 2010-01-01    |     31555
+ 03_monthly_row_count | 2010-02-01    |     29388
+ 03_monthly_row_count | 2010-03-01    |     41511
+ 03_monthly_row_count | 2010-04-01    |     34057
+ 03_monthly_row_count | 2010-05-01    |     35323
+ 03_monthly_row_count | 2010-06-01    |     39983
+ 03_monthly_row_count | 2010-07-01    |     33383
+ 03_monthly_row_count | 2010-08-01    |     33306
+ 03_monthly_row_count | 2010-09-01    |     42091
+ 03_monthly_row_count | 2010-10-01    |     59098
+ 03_monthly_row_count | 2010-11-01    |     78015
+ 03_monthly_row_count | 2010-12-01    |     65004
+ 03_monthly_row_count | 2011-01-01    |     35147
+ 03_monthly_row_count | 2011-02-01    |     27707
+ 03_monthly_row_count | 2011-03-01    |     36748
+ 03_monthly_row_count | 2011-04-01    |     29916
+ 03_monthly_row_count | 2011-05-01    |     37030
+ 03_monthly_row_count | 2011-06-01    |     36874
+ 03_monthly_row_count | 2011-07-01    |     39518
+ 03_monthly_row_count | 2011-08-01    |     35284
+ 03_monthly_row_count | 2011-09-01    |     50226
+ 03_monthly_row_count | 2011-10-01    |     60742
+ 03_monthly_row_count | 2011-11-01    |     84711
+ 03_monthly_row_count | 2011-12-01    |     25526
+(25俺 青)
+
+********** 孽府 **********
+SELECT '04_customer_id_presence' AS check_name,
+       CASE WHEN customer_id IS NULL THEN 'missing' ELSE 'present' END AS status,
+       count(*) AS row_count,
+       round(100.0 * count(*) / sum(count(*)) OVER (), 4) AS row_pct
+FROM retail.online_retail_raw
+GROUP BY 2
+ORDER BY 2;
+**************************
+
+       check_name        | status  | row_count | row_pct 
+-------------------------+---------+-----------+---------
+ 04_customer_id_presence | missing |    243007 | 22.7669
+ 04_customer_id_presence | present |    824364 | 77.2331
+(2俺 青)
+
+********** 孽府 **********
+SELECT '05_quantity_sign' AS check_name,
+       CASE
+           WHEN quantity < 0 THEN 'negative'
+           WHEN quantity = 0 THEN 'zero'
+           WHEN quantity > 0 THEN 'positive'
+           ELSE 'null'
+       END AS sign,
+       count(*) AS row_count,
+       round(100.0 * count(*) / sum(count(*)) OVER (), 4) AS row_pct
+FROM retail.online_retail_raw
+GROUP BY 2
+ORDER BY 2;
+**************************
+
+    check_name    |   sign   | row_count | row_pct 
+------------------+----------+-----------+---------
+ 05_quantity_sign | negative |     22950 |  2.1501
+ 05_quantity_sign | positive |   1044421 | 97.8499
+(2俺 青)
+
+********** 孽府 **********
+SELECT '06_price_sign' AS check_name,
+       CASE
+           WHEN price < 0 THEN 'negative'
+           WHEN price = 0 THEN 'zero'
+           WHEN price > 0 THEN 'positive'
+           ELSE 'null'
+       END AS sign,
+       count(*) AS row_count,
+       round(100.0 * count(*) / sum(count(*)) OVER (), 4) AS row_pct
+FROM retail.online_retail_raw
+GROUP BY 2
+ORDER BY 2;
+**************************
+
+  check_name   |   sign   | row_count | row_pct 
+---------------+----------+-----------+---------
+ 06_price_sign | negative |         5 |  0.0005
+ 06_price_sign | positive |   1061164 | 99.4185
+ 06_price_sign | zero     |      6202 |  0.5811
+(3俺 青)
+
+********** 孽府 **********
+SELECT '07_cancel_invoice_x_negative_quantity' AS check_name,
+       invoice LIKE 'C%' AS invoice_starts_with_c,
+       quantity < 0 AS has_negative_quantity,
+       count(*) AS row_count
+FROM retail.online_retail_raw
+GROUP BY 2, 3
+ORDER BY 2, 3;
+**************************
+
+              check_name               | invoice_starts_with_c | has_negative_quantity | row_count 
+---------------------------------------+-----------------------+-----------------------+-----------
+ 07_cancel_invoice_x_negative_quantity | f                     | f                     |   1044420
+ 07_cancel_invoice_x_negative_quantity | f                     | t                     |      3457
+ 07_cancel_invoice_x_negative_quantity | t                     | f                     |         1
+ 07_cancel_invoice_x_negative_quantity | t                     | t                     |     19493
+(4俺 青)
+
+********** 孽府 **********
+SELECT '08_distinct_counts' AS check_name,
+       count(DISTINCT country) AS countries,
+       count(DISTINCT invoice) AS invoices,
+       count(DISTINCT customer_id) AS customers
+FROM retail.online_retail_raw;
+**************************
+
+     check_name     | countries | invoices | customers 
+--------------------+-----------+----------+-----------
+ 08_distinct_counts |        43 |    53628 |      5942
+(1俺 青)
+
+********** 孽府 **********
+WITH exact_groups AS (
+    SELECT count(*) AS occurrences
+    FROM retail.online_retail_raw
+    GROUP BY invoice, stock_code, description, quantity,
+             invoice_date, price, customer_id, country
+    HAVING count(*) > 1
+)
+SELECT '09_exact_duplicates' AS check_name,
+       count(*) AS duplicate_groups,
+       coalesce(sum(occurrences), 0) AS affected_rows,
+       coalesce(sum(occurrences - 1), 0) AS extra_rows
+FROM exact_groups;
+**************************
+
+     check_name      | duplicate_groups | affected_rows | extra_rows 
+---------------------+------------------+---------------+------------
+ 09_exact_duplicates |            32907 |         67242 |      34335
+(1俺 青)
+
+********** 孽府 **********
+WITH candidate_groups AS (
+    SELECT count(*) AS occurrences
+    FROM retail.online_retail_raw
+    GROUP BY invoice, stock_code, quantity, invoice_date, price, customer_id
+    HAVING count(*) > 1
+)
+SELECT '09_duplicate_candidates' AS check_name,
+       count(*) AS duplicate_groups,
+       coalesce(sum(occurrences), 0) AS affected_rows,
+       coalesce(sum(occurrences - 1), 0) AS extra_rows
+FROM candidate_groups;
+**************************
+
+       check_name        | duplicate_groups | affected_rows | extra_rows 
+-------------------------+------------------+---------------+------------
+ 09_duplicate_candidates |            32909 |         67246 |      34337
+(1俺 青)
+
+********** 孽府 **********
+SELECT '10_provisional_amount' AS check_name,
+       sum(quantity::numeric * price) AS signed_amount,
+       sum(quantity::numeric * price) FILTER (WHERE quantity > 0) AS positive_quantity_amount,
+       sum(quantity::numeric * price) FILTER (WHERE quantity < 0) AS negative_quantity_amount
+FROM retail.online_retail_raw;
+**************************
+
+      check_name       | signed_amount | positive_quantity_amount | negative_quantity_amount 
+-----------------------+---------------+--------------------------+--------------------------
+ 10_provisional_amount | 19287250.5680 |            20814291.9980 |            -1527041.4300
+(1俺 青)
+
+********** 孽府 **********
+DO $validation$
+DECLARE
+    actual_total bigint;
+    first_sheet_total bigint;
+    second_sheet_total bigint;
+    latest_audit record;
+BEGIN
+    SELECT count(*) INTO actual_total
+    FROM retail.online_retail_raw;
+
+    SELECT count(*) INTO first_sheet_total
+    FROM retail.online_retail_raw
+    WHERE source_sheet = 'Year 2009-2010';
+
+    SELECT count(*) INTO second_sheet_total
+    FROM retail.online_retail_raw
+    WHERE source_sheet = 'Year 2010-2011';
+
+    SELECT * INTO latest_audit
+    FROM retail.load_audit
+    ORDER BY load_id DESC
+    LIMIT 1;
+
+    IF actual_total <> 1067371
+       OR first_sheet_total <> 525461
+       OR second_sheet_total <> 541910 THEN
+        RAISE EXCEPTION
+            'Row reconciliation failed: total %, first sheet %, second sheet %',
+            actual_total, first_sheet_total, second_sheet_total;
+    END IF;
+
+    IF latest_audit IS NULL
+       OR latest_audit.loaded_row_count <> actual_total
+       OR latest_audit.expected_row_count <> actual_total
+       OR latest_audit.source_sha256 <> 'BCBE73B35F5B7BABF197FB0CB983A11F5D9FF929078D4AA53D171B1F2DF2E980' THEN
+        RAISE EXCEPTION 'Load audit reconciliation failed';
+    END IF;
+
+    RAISE NOTICE 'PASS: source, audit, and PostgreSQL row counts reconcile (% rows)', actual_total;
+END
+$validation$;
+**************************
+
+DO

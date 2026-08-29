@@ -1,0 +1,11 @@
+pandas
+geopandas
+matplotlib
+seaborn
+scipy
+psycopg2-binary
+SQLAlchemy
+openpyxl
+jupyterlab
+nbformat
+nbclient
