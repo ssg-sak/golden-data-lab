@@ -1,0 +1,704 @@
+********** ƒı∏Æ **********
+SELECT '00_execution_identity' AS check_name,
+       current_database() AS database_name,
+       current_user AS database_user,
+       version() AS postgres_version,
+       statement_timestamp() AS validation_started_at;
+**************************
+
+      check_name       |  database_name  | database_user |                            postgres_version                             |     validation_started_at     
+-----------------------+-----------------+---------------+-------------------------------------------------------------------------+-------------------------------
+ 00_execution_identity | golden_data_lab | postgres      | PostgreSQL 18.4 on x86_64-windows, compiled by msvc-19.44.35227, 64-bit | 2026-08-29 11:46:45.167673+09
+(1∞≥ «‡)
+
+********** ƒı∏Æ **********
+SELECT '00_load_audit' AS check_name,
+       load_id,
+       source_file_name,
+       source_sha256,
+       source_size_bytes,
+       table_row_counts,
+       started_at,
+       finished_at,
+       database_user,
+       loader_version,
+       status
+FROM migration.load_audit
+ORDER BY load_id DESC
+LIMIT 1;
+**************************
+
+  check_name   | load_id |            source_file_name             |                          source_sha256                           | source_size_bytes |                                                                                                                 table_row_counts                                                                                                                 |          started_at           |          finished_at          | database_user | loader_version | status  
+---------------+---------+-----------------------------------------+------------------------------------------------------------------+-------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------+-------------------------------+---------------+----------------+---------
+ 00_load_audit |       1 | 2025_domestic_migration_statistics.xlsx | FE066C40AAE0AE5C34C67947B404DC8943405C9BF0A7952DA09B0CF26D901E9D |            204601 | {"od_net_2025": 972, "reason_2025": 720, "capital_yearly": 37, "monthly_movers": 39, "od_movers_2025": 972, "sido_flow_yearly": 1134, "sido_gender_2025": 54, "age_movers_yearly": 1134, "sido_age_net_2025": 918, "national_movers_yearly": 57} | 2026-08-29 11:46:44.128776+09 | 2026-08-29 11:46:44.834332+09 | postgres      | 1.0.0          | success
+(1∞≥ «‡)
+
+********** ƒı∏Æ **********
+SELECT '01_national_2025_movers' AS check_name,
+       movers_total AS actual_value,
+       6117784::bigint AS expected_value,
+       movers_total = 6117784 AS passed
+FROM migration.national_movers_yearly
+WHERE year = 2025;
+**************************
+
+       check_name        | actual_value | expected_value | passed 
+-------------------------+--------------+----------------+--------
+ 01_national_2025_movers |      6117784 |        6117784 | t
+(1∞≥ «‡)
+
+********** ƒı∏Æ **********
+SELECT '02_table_row_counts' AS check_name,
+       table_name,
+       actual_rows,
+       expected_rows,
+       actual_rows = expected_rows AS passed
+FROM (
+    SELECT 'national_movers_yearly' AS table_name, count(*) AS actual_rows, 57::bigint AS expected_rows
+    FROM migration.national_movers_yearly
+    UNION ALL
+    SELECT 'age_movers_yearly', count(*), 1134 FROM migration.age_movers_yearly
+    UNION ALL
+    SELECT 'sido_flow_yearly', count(*), 1134 FROM migration.sido_flow_yearly
+    UNION ALL
+    SELECT 'sido_gender_2025', count(*), 54 FROM migration.sido_gender_2025
+    UNION ALL
+    SELECT 'sido_age_net_2025', count(*), 918 FROM migration.sido_age_net_2025
+    UNION ALL
+    SELECT 'od_movers_2025', count(*), 972 FROM migration.od_movers_2025
+    UNION ALL
+    SELECT 'od_net_2025', count(*), 972 FROM migration.od_net_2025
+    UNION ALL
+    SELECT 'capital_yearly', count(*), 37 FROM migration.capital_yearly
+    UNION ALL
+    SELECT 'monthly_movers', count(*), 39 FROM migration.monthly_movers
+    UNION ALL
+    SELECT 'reason_2025', count(*), 720 FROM migration.reason_2025
+) AS counts
+ORDER BY table_name;
+**************************
+
+     check_name      |       table_name       | actual_rows | expected_rows | passed 
+---------------------+------------------------+-------------+---------------+--------
+ 02_table_row_counts | age_movers_yearly      |        1134 |          1134 | t
+ 02_table_row_counts | capital_yearly         |          37 |            37 | t
+ 02_table_row_counts | monthly_movers         |          39 |            39 | t
+ 02_table_row_counts | national_movers_yearly |          57 |            57 | t
+ 02_table_row_counts | od_movers_2025         |         972 |           972 | t
+ 02_table_row_counts | od_net_2025            |         972 |           972 | t
+ 02_table_row_counts | reason_2025            |         720 |           720 | t
+ 02_table_row_counts | sido_age_net_2025      |         918 |           918 | t
+ 02_table_row_counts | sido_flow_yearly       |        1134 |          1134 | t
+ 02_table_row_counts | sido_gender_2025       |          54 |            54 | t
+(10∞≥ «‡)
+
+********** ƒı∏Æ **********
+SELECT '03_year_range_national' AS check_name,
+       min(year) AS min_year,
+       max(year) AS max_year,
+       min(year) = 1970 AND max(year) = 2025 AS passed
+FROM migration.national_movers_yearly;
+**************************
+
+       check_name       | min_year | max_year | passed 
+------------------------+----------+----------+--------
+ 03_year_range_national |     1970 |     2025 | t
+(1∞≥ «‡)
+
+********** ƒı∏Æ **********
+SELECT '04_null_profile' AS check_name,
+       'national_movers_total' AS column_name,
+       count(*) FILTER (WHERE movers_total IS NULL) AS null_rows,
+       count(*) FILTER (WHERE movers_total IS NULL) = 0 AS passed
+FROM migration.national_movers_yearly
+UNION ALL
+SELECT '04_null_profile', 'sido_age_net',
+       count(*) FILTER (WHERE net IS NULL),
+       count(*) FILTER (WHERE net IS NULL) = 0
+FROM migration.sido_age_net_2025
+UNION ALL
+SELECT '04_null_profile', 'od_movers',
+       count(*) FILTER (WHERE movers IS NULL),
+       count(*) FILTER (WHERE movers IS NULL) = 0
+FROM migration.od_movers_2025;
+**************************
+
+   check_name    |      column_name      | null_rows | passed 
+-----------------+-----------------------+-----------+--------
+ 04_null_profile | national_movers_total |         1 | f
+ 04_null_profile | sido_age_net          |         0 | t
+ 04_null_profile | od_movers             |         0 | t
+(3∞≥ «‡)
+
+********** ƒı∏Æ **********
+SELECT '05_national_net_zero' AS check_name,
+       value AS actual_net,
+       0::bigint AS expected_net,
+       value = 0 AS passed
+FROM migration.sido_flow_yearly
+WHERE year = 2025 AND measure = 'net' AND sido = 'Ï†ÑÍµ≠';
+**************************
+
+      check_name      | actual_net | expected_net | passed 
+----------------------+------------+--------------+--------
+ 05_national_net_zero |          0 |            0 | t
+(1∞≥ «‡)
+
+********** ƒı∏Æ **********
+SELECT '06_youth_movers_2025' AS check_name,
+       sum(movers) AS actual_value,
+       2761243::bigint AS expected_value,
+       sum(movers) = 2761243 AS passed
+FROM migration.age_movers_yearly
+WHERE year = 2025
+  AND gender = 'all'
+  AND age_group IN ('20-24', '25-29', '30-34', '35-39');
+**************************
+
+      check_name      | actual_value | expected_value | passed 
+----------------------+--------------+----------------+--------
+ 06_youth_movers_2025 |      2761243 |        2761243 | t
+(1∞≥ «‡)
+
+********** ƒı∏Æ **********
+SELECT '07_seoul_age_net' AS check_name,
+       age_group,
+       net AS actual_net,
+       CASE age_group WHEN '20-24' THEN 25664 WHEN '30-34' THEN -10861 END AS expected_net,
+       net = CASE age_group WHEN '20-24' THEN 25664 WHEN '30-34' THEN -10861 END AS passed
+FROM migration.sido_age_net_2025
+WHERE year = 2025 AND gender = 'all' AND sido = 'ÏÑúÏö∏'
+  AND age_group IN ('20-24', '30-34')
+ORDER BY age_group;
+**************************
+
+    check_name    | age_group | actual_net | expected_net | passed 
+------------------+-----------+------------+--------------+--------
+ 07_seoul_age_net | 20-24     |      25664 |        25664 | t
+ 07_seoul_age_net | 30-34     |     -10861 |       -10861 | t
+(2∞≥ «‡)
+
+********** ƒı∏Æ **********
+SELECT '08_od_row_is_destination' AS check_name,
+       dest.movers - intra.movers AS implied_inter_sido_in,
+       gender.inter_sido_in AS sheet4_inter_sido_in,
+       dest.movers - intra.movers = gender.inter_sido_in AS passed
+FROM migration.od_movers_2025 AS dest
+JOIN migration.od_movers_2025 AS intra
+  ON intra.gender = dest.gender
+ AND intra.destination = dest.destination
+ AND intra.origin = dest.destination
+JOIN migration.sido_gender_2025 AS gender
+  ON gender.gender = dest.gender
+ AND gender.sido = dest.destination
+WHERE dest.gender = 'all'
+  AND dest.destination = 'ÏÑúÏö∏'
+  AND dest.origin = 'Ï†ÑÍµ≠';
+**************************
+
+        check_name        | implied_inter_sido_in | sheet4_inter_sido_in | passed 
+--------------------------+-----------------------+----------------------+--------
+ 08_od_row_is_destination |                438327 |               438327 | t
+(1∞≥ «‡)
+
+********** ƒı∏Æ **********
+SELECT '09_capital_net_2025' AS check_name,
+       net AS actual_net,
+       in_from_noncapital - out_to_noncapital AS implied_net,
+       net = 38465 AND net = in_from_noncapital - out_to_noncapital AS passed
+FROM migration.capital_yearly
+WHERE year = 2025;
+**************************
+
+     check_name      | actual_net | implied_net | passed 
+---------------------+------------+-------------+--------
+ 09_capital_net_2025 |      38465 |       38465 | t
+(1∞≥ «‡)
+
+********** ƒı∏Æ **********
+SELECT '10_youth_net_by_sido' AS check_name,
+       sido,
+       is_capital,
+       net_20s,
+       net_30s,
+       net_youth_20_39,
+       net_total
+FROM migration.v_youth_net_2025
+ORDER BY net_youth_20_39 DESC;
+**************************
+
+      check_name      | sido | is_capital | net_20s | net_30s | net_youth_20_39 | net_total 
+----------------------+------+------------+---------+---------+-----------------+-----------
+ 10_youth_net_by_sido | Í≤ΩÍ∏∞ | t          |    7439 |   13614 |           21053 |     32970
+ 10_youth_net_by_sido | ÏÑúÏö∏ | t          |   35937 |  -18730 |           17207 |    -26769
+ 10_youth_net_by_sido | Ïù∏Ï≤ú | t          |    5004 |    7468 |           12472 |     32264
+ 10_youth_net_by_sido | Ï∂©Î∂Å | f          |     450 |    2093 |            2543 |     10789
+ 10_youth_net_by_sido | ÎåÄÏ†Ñ | f          |    2248 |     185 |            2433 |      2824
+ 10_youth_net_by_sido | ÏÑ∏Ï¢Ö | f          |     294 |     951 |            1245 |       -47
+ 10_youth_net_by_sido | Ï∂©ÎÇ® | f          |   -1133 |    1425 |             292 |      8266
+ 10_youth_net_by_sido | Ïö∏ÏÇ∞ | f          |   -1154 |      42 |           -1112 |     -5474
+ 10_youth_net_by_sido | Ï†úÏ£º | f          |   -2198 |    -248 |           -2446 |     -4273
+ 10_youth_net_by_sido | Í∞ïÏõê | f          |   -3765 |    -412 |           -4177 |     -1387
+ 10_youth_net_by_sido | Ï†ÑÎÇ® | f          |   -5094 |     897 |           -4197 |      1334
+ 10_youth_net_by_sido | ÎåÄÍµ¨ | f          |   -4884 |     211 |           -4673 |     -4272
+ 10_youth_net_by_sido | Ï†ÑÎ∂Å | f          |   -5439 |    -635 |           -6074 |     -3575
+ 10_youth_net_by_sido | Î∂ÄÏÇ∞ | f          |   -4510 |   -2718 |           -7228 |    -12181
+ 10_youth_net_by_sido | Í¥ëÏ£º | f          |   -5227 |   -2807 |           -8034 |    -13678
+ 10_youth_net_by_sido | Í≤ΩÎÇ® | f          |   -9129 |     584 |           -8545 |     -7577
+ 10_youth_net_by_sido | Í≤ΩÎ∂Å | f          |   -8839 |   -1920 |          -10759 |     -9214
+(17∞≥ «‡)
+
+********** ƒı∏Æ **********
+SELECT '11_top_inter_sido_od' AS check_name,
+       origin,
+       destination,
+       movers,
+       origin_capital,
+       destination_capital
+FROM migration.v_inter_sido_od_2025
+ORDER BY movers DESC
+LIMIT 10;
+**************************
+
+      check_name      | origin | destination | movers | origin_capital | destination_capital 
+----------------------+--------+-------------+--------+----------------+---------------------
+ 11_top_inter_sido_od | ÏÑúÏö∏   | Í≤ΩÍ∏∞        | 276867 | t              | t
+ 11_top_inter_sido_od | Í≤ΩÍ∏∞   | ÏÑúÏö∏        | 235668 | t              | t
+ 11_top_inter_sido_od | Í≤ΩÍ∏∞   | Ïù∏Ï≤ú        |  73089 | t              | t
+ 11_top_inter_sido_od | Ïù∏Ï≤ú   | Í≤ΩÍ∏∞        |  57580 | t              | t
+ 11_top_inter_sido_od | ÏÑúÏö∏   | Ïù∏Ï≤ú        |  46570 | t              | t
+ 11_top_inter_sido_od | Î∂ÄÏÇ∞   | Í≤ΩÎÇ®        |  43163 | f              | f
+ 11_top_inter_sido_od | Í≤ΩÎÇ®   | Î∂ÄÏÇ∞        |  40742 | f              | f
+ 11_top_inter_sido_od | Í≤ΩÎ∂Å   | ÎåÄÍµ¨        |  37837 | f              | f
+ 11_top_inter_sido_od | Í≤ΩÍ∏∞   | Ï∂©ÎÇ®        |  36471 | t              | f
+ 11_top_inter_sido_od | Ïù∏Ï≤ú   | ÏÑúÏö∏        |  34098 | t              | t
+(10∞≥ «‡)
+
+********** ƒı∏Æ **********
+DO $validation$
+DECLARE
+    national_2025 bigint;
+    youth_2025 bigint;
+    seoul_20_24 bigint;
+    seoul_30_34 bigint;
+    capital_net bigint;
+    latest_audit record;
+    table_mismatch int;
+BEGIN
+    SELECT movers_total INTO national_2025
+    FROM migration.national_movers_yearly
+    WHERE year = 2025;
+
+    SELECT sum(movers) INTO youth_2025
+    FROM migration.age_movers_yearly
+    WHERE year = 2025
+      AND gender = 'all'
+      AND age_group IN ('20-24', '25-29', '30-34', '35-39');
+
+    SELECT net INTO seoul_20_24
+    FROM migration.sido_age_net_2025
+    WHERE gender = 'all' AND sido = 'ÏÑúÏö∏' AND age_group = '20-24';
+
+    SELECT net INTO seoul_30_34
+    FROM migration.sido_age_net_2025
+    WHERE gender = 'all' AND sido = 'ÏÑúÏö∏' AND age_group = '30-34';
+
+    SELECT net INTO capital_net
+    FROM migration.capital_yearly
+    WHERE year = 2025;
+
+    SELECT * INTO latest_audit
+    FROM migration.load_audit
+    ORDER BY load_id DESC
+    LIMIT 1;
+
+    SELECT count(*) INTO table_mismatch
+    FROM (
+        SELECT count(*) AS actual_rows, 57::bigint AS expected_rows FROM migration.national_movers_yearly
+        UNION ALL SELECT count(*), 1134 FROM migration.age_movers_yearly
+        UNION ALL SELECT count(*), 1134 FROM migration.sido_flow_yearly
+        UNION ALL SELECT count(*), 54 FROM migration.sido_gender_2025
+        UNION ALL SELECT count(*), 918 FROM migration.sido_age_net_2025
+        UNION ALL SELECT count(*), 972 FROM migration.od_movers_2025
+        UNION ALL SELECT count(*), 972 FROM migration.od_net_2025
+        UNION ALL SELECT count(*), 37 FROM migration.capital_yearly
+        UNION ALL SELECT count(*), 39 FROM migration.monthly_movers
+        UNION ALL SELECT count(*), 720 FROM migration.reason_2025
+    ) AS counts
+    WHERE actual_rows <> expected_rows;
+
+    IF national_2025 <> 6117784
+       OR youth_2025 <> 2761243
+       OR seoul_20_24 <> 25664
+       OR seoul_30_34 <> -10861
+       OR capital_net <> 38465
+       OR table_mismatch <> 0 THEN
+        RAISE EXCEPTION
+            'Row reconciliation failed: movers %, youth %, seoul 20-24 %, seoul 30-34 %, capital %, table mismatches %',
+            national_2025, youth_2025, seoul_20_24, seoul_30_34, capital_net, table_mismatch;
+    END IF;
+
+    IF latest_audit IS NULL
+       OR latest_audit.status <> 'success'
+       OR latest_audit.source_sha256 <> 'FE066C40AAE0AE5C34C67947B404DC8943405C9BF0A7952DA09B0CF26D901E9D' THEN
+        RAISE EXCEPTION 'Load audit reconciliation failed';
+    END IF;
+
+    RAISE NOTICE 'PASS: source, audit, and PostgreSQL migration tables reconcile (2025 movers %)', national_2025;
+END
+$validation$;
+**************************
+
+DO
+********** ƒı∏Æ **********
+SELECT '00_execution_identity' AS check_name,
+       current_database() AS database_name,
+       current_user AS database_user,
+       version() AS postgres_version,
+       statement_timestamp() AS validation_started_at;
+**************************
+
+      check_name       |  database_name  | database_user |                            postgres_version                             |     validation_started_at     
+-----------------------+-----------------+---------------+-------------------------------------------------------------------------+-------------------------------
+ 00_execution_identity | golden_data_lab | postgres      | PostgreSQL 18.4 on x86_64-windows, compiled by msvc-19.44.35227, 64-bit | 2026-08-29 11:48:56.215249+09
+(1∞≥ «‡)
+
+********** ƒı∏Æ **********
+SELECT '00_load_audit' AS check_name,
+       load_id,
+       source_file_name,
+       source_sha256,
+       source_size_bytes,
+       table_row_counts,
+       started_at,
+       finished_at,
+       database_user,
+       loader_version,
+       status
+FROM migration.load_audit
+ORDER BY load_id DESC
+LIMIT 1;
+**************************
+
+  check_name   | load_id |            source_file_name             |                          source_sha256                           | source_size_bytes |                                                                                                                 table_row_counts                                                                                                                 |          started_at           |          finished_at          | database_user | loader_version | status  
+---------------+---------+-----------------------------------------+------------------------------------------------------------------+-------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------+-------------------------------+---------------+----------------+---------
+ 00_load_audit |       1 | 2025_domestic_migration_statistics.xlsx | FE066C40AAE0AE5C34C67947B404DC8943405C9BF0A7952DA09B0CF26D901E9D |            204601 | {"od_net_2025": 972, "reason_2025": 720, "capital_yearly": 37, "monthly_movers": 39, "od_movers_2025": 972, "sido_flow_yearly": 1134, "sido_gender_2025": 54, "age_movers_yearly": 1134, "sido_age_net_2025": 918, "national_movers_yearly": 56} | 2026-08-29 11:48:55.621014+09 | 2026-08-29 11:48:55.981759+09 | postgres      | 1.0.0          | success
+(1∞≥ «‡)
+
+********** ƒı∏Æ **********
+SELECT '01_national_2025_movers' AS check_name,
+       movers_total AS actual_value,
+       6117784::bigint AS expected_value,
+       movers_total = 6117784 AS passed
+FROM migration.national_movers_yearly
+WHERE year = 2025;
+**************************
+
+       check_name        | actual_value | expected_value | passed 
+-------------------------+--------------+----------------+--------
+ 01_national_2025_movers |      6117784 |        6117784 | t
+(1∞≥ «‡)
+
+********** ƒı∏Æ **********
+SELECT '02_table_row_counts' AS check_name,
+       table_name,
+       actual_rows,
+       expected_rows,
+       actual_rows = expected_rows AS passed
+FROM (
+    SELECT 'national_movers_yearly' AS table_name, count(*) AS actual_rows, 56::bigint AS expected_rows
+    FROM migration.national_movers_yearly
+    UNION ALL
+    SELECT 'age_movers_yearly', count(*), 1134 FROM migration.age_movers_yearly
+    UNION ALL
+    SELECT 'sido_flow_yearly', count(*), 1134 FROM migration.sido_flow_yearly
+    UNION ALL
+    SELECT 'sido_gender_2025', count(*), 54 FROM migration.sido_gender_2025
+    UNION ALL
+    SELECT 'sido_age_net_2025', count(*), 918 FROM migration.sido_age_net_2025
+    UNION ALL
+    SELECT 'od_movers_2025', count(*), 972 FROM migration.od_movers_2025
+    UNION ALL
+    SELECT 'od_net_2025', count(*), 972 FROM migration.od_net_2025
+    UNION ALL
+    SELECT 'capital_yearly', count(*), 37 FROM migration.capital_yearly
+    UNION ALL
+    SELECT 'monthly_movers', count(*), 39 FROM migration.monthly_movers
+    UNION ALL
+    SELECT 'reason_2025', count(*), 720 FROM migration.reason_2025
+) AS counts
+ORDER BY table_name;
+**************************
+
+     check_name      |       table_name       | actual_rows | expected_rows | passed 
+---------------------+------------------------+-------------+---------------+--------
+ 02_table_row_counts | age_movers_yearly      |        1134 |          1134 | t
+ 02_table_row_counts | capital_yearly         |          37 |            37 | t
+ 02_table_row_counts | monthly_movers         |          39 |            39 | t
+ 02_table_row_counts | national_movers_yearly |          56 |            56 | t
+ 02_table_row_counts | od_movers_2025         |         972 |           972 | t
+ 02_table_row_counts | od_net_2025            |         972 |           972 | t
+ 02_table_row_counts | reason_2025            |         720 |           720 | t
+ 02_table_row_counts | sido_age_net_2025      |         918 |           918 | t
+ 02_table_row_counts | sido_flow_yearly       |        1134 |          1134 | t
+ 02_table_row_counts | sido_gender_2025       |          54 |            54 | t
+(10∞≥ «‡)
+
+********** ƒı∏Æ **********
+SELECT '03_year_range_national' AS check_name,
+       min(year) AS min_year,
+       max(year) AS max_year,
+       min(year) = 1970 AND max(year) = 2025 AS passed
+FROM migration.national_movers_yearly;
+**************************
+
+       check_name       | min_year | max_year | passed 
+------------------------+----------+----------+--------
+ 03_year_range_national |     1970 |     2025 | t
+(1∞≥ «‡)
+
+********** ƒı∏Æ **********
+SELECT '04_null_profile' AS check_name,
+       'national_movers_total' AS column_name,
+       count(*) FILTER (WHERE movers_total IS NULL) AS null_rows,
+       count(*) FILTER (WHERE movers_total IS NULL) = 0 AS passed
+FROM migration.national_movers_yearly
+UNION ALL
+SELECT '04_null_profile', 'sido_age_net',
+       count(*) FILTER (WHERE net IS NULL),
+       count(*) FILTER (WHERE net IS NULL) = 0
+FROM migration.sido_age_net_2025
+UNION ALL
+SELECT '04_null_profile', 'od_movers',
+       count(*) FILTER (WHERE movers IS NULL),
+       count(*) FILTER (WHERE movers IS NULL) = 0
+FROM migration.od_movers_2025;
+**************************
+
+   check_name    |      column_name      | null_rows | passed 
+-----------------+-----------------------+-----------+--------
+ 04_null_profile | national_movers_total |         0 | t
+ 04_null_profile | sido_age_net          |         0 | t
+ 04_null_profile | od_movers             |         0 | t
+(3∞≥ «‡)
+
+********** ƒı∏Æ **********
+SELECT '05_national_net_zero' AS check_name,
+       value AS actual_net,
+       0::bigint AS expected_net,
+       value = 0 AS passed
+FROM migration.sido_flow_yearly
+WHERE year = 2025 AND measure = 'net' AND sido = 'Ï†ÑÍµ≠';
+**************************
+
+      check_name      | actual_net | expected_net | passed 
+----------------------+------------+--------------+--------
+ 05_national_net_zero |          0 |            0 | t
+(1∞≥ «‡)
+
+********** ƒı∏Æ **********
+SELECT '06_youth_movers_2025' AS check_name,
+       sum(movers) AS actual_value,
+       2761243::bigint AS expected_value,
+       sum(movers) = 2761243 AS passed
+FROM migration.age_movers_yearly
+WHERE year = 2025
+  AND gender = 'all'
+  AND age_group IN ('20-24', '25-29', '30-34', '35-39');
+**************************
+
+      check_name      | actual_value | expected_value | passed 
+----------------------+--------------+----------------+--------
+ 06_youth_movers_2025 |      2761243 |        2761243 | t
+(1∞≥ «‡)
+
+********** ƒı∏Æ **********
+SELECT '07_seoul_age_net' AS check_name,
+       age_group,
+       net AS actual_net,
+       CASE age_group WHEN '20-24' THEN 25664 WHEN '30-34' THEN -10861 END AS expected_net,
+       net = CASE age_group WHEN '20-24' THEN 25664 WHEN '30-34' THEN -10861 END AS passed
+FROM migration.sido_age_net_2025
+WHERE year = 2025 AND gender = 'all' AND sido = 'ÏÑúÏö∏'
+  AND age_group IN ('20-24', '30-34')
+ORDER BY age_group;
+**************************
+
+    check_name    | age_group | actual_net | expected_net | passed 
+------------------+-----------+------------+--------------+--------
+ 07_seoul_age_net | 20-24     |      25664 |        25664 | t
+ 07_seoul_age_net | 30-34     |     -10861 |       -10861 | t
+(2∞≥ «‡)
+
+********** ƒı∏Æ **********
+SELECT '08_od_row_is_destination' AS check_name,
+       dest.movers - intra.movers AS implied_inter_sido_in,
+       gender.inter_sido_in AS sheet4_inter_sido_in,
+       dest.movers - intra.movers = gender.inter_sido_in AS passed
+FROM migration.od_movers_2025 AS dest
+JOIN migration.od_movers_2025 AS intra
+  ON intra.gender = dest.gender
+ AND intra.destination = dest.destination
+ AND intra.origin = dest.destination
+JOIN migration.sido_gender_2025 AS gender
+  ON gender.gender = dest.gender
+ AND gender.sido = dest.destination
+WHERE dest.gender = 'all'
+  AND dest.destination = 'ÏÑúÏö∏'
+  AND dest.origin = 'Ï†ÑÍµ≠';
+**************************
+
+        check_name        | implied_inter_sido_in | sheet4_inter_sido_in | passed 
+--------------------------+-----------------------+----------------------+--------
+ 08_od_row_is_destination |                438327 |               438327 | t
+(1∞≥ «‡)
+
+********** ƒı∏Æ **********
+SELECT '09_capital_net_2025' AS check_name,
+       net AS actual_net,
+       in_from_noncapital - out_to_noncapital AS implied_net,
+       net = 38465 AND net = in_from_noncapital - out_to_noncapital AS passed
+FROM migration.capital_yearly
+WHERE year = 2025;
+**************************
+
+     check_name      | actual_net | implied_net | passed 
+---------------------+------------+-------------+--------
+ 09_capital_net_2025 |      38465 |       38465 | t
+(1∞≥ «‡)
+
+********** ƒı∏Æ **********
+SELECT '10_youth_net_by_sido' AS check_name,
+       sido,
+       is_capital,
+       net_20s,
+       net_30s,
+       net_youth_20_39,
+       net_total
+FROM migration.v_youth_net_2025
+ORDER BY net_youth_20_39 DESC;
+**************************
+
+      check_name      | sido | is_capital | net_20s | net_30s | net_youth_20_39 | net_total 
+----------------------+------+------------+---------+---------+-----------------+-----------
+ 10_youth_net_by_sido | Í≤ΩÍ∏∞ | t          |    7439 |   13614 |           21053 |     32970
+ 10_youth_net_by_sido | ÏÑúÏö∏ | t          |   35937 |  -18730 |           17207 |    -26769
+ 10_youth_net_by_sido | Ïù∏Ï≤ú | t          |    5004 |    7468 |           12472 |     32264
+ 10_youth_net_by_sido | Ï∂©Î∂Å | f          |     450 |    2093 |            2543 |     10789
+ 10_youth_net_by_sido | ÎåÄÏ†Ñ | f          |    2248 |     185 |            2433 |      2824
+ 10_youth_net_by_sido | ÏÑ∏Ï¢Ö | f          |     294 |     951 |            1245 |       -47
+ 10_youth_net_by_sido | Ï∂©ÎÇ® | f          |   -1133 |    1425 |             292 |      8266
+ 10_youth_net_by_sido | Ïö∏ÏÇ∞ | f          |   -1154 |      42 |           -1112 |     -5474
+ 10_youth_net_by_sido | Ï†úÏ£º | f          |   -2198 |    -248 |           -2446 |     -4273
+ 10_youth_net_by_sido | Í∞ïÏõê | f          |   -3765 |    -412 |           -4177 |     -1387
+ 10_youth_net_by_sido | Ï†ÑÎÇ® | f          |   -5094 |     897 |           -4197 |      1334
+ 10_youth_net_by_sido | ÎåÄÍµ¨ | f          |   -4884 |     211 |           -4673 |     -4272
+ 10_youth_net_by_sido | Ï†ÑÎ∂Å | f          |   -5439 |    -635 |           -6074 |     -3575
+ 10_youth_net_by_sido | Î∂ÄÏÇ∞ | f          |   -4510 |   -2718 |           -7228 |    -12181
+ 10_youth_net_by_sido | Í¥ëÏ£º | f          |   -5227 |   -2807 |           -8034 |    -13678
+ 10_youth_net_by_sido | Í≤ΩÎÇ® | f          |   -9129 |     584 |           -8545 |     -7577
+ 10_youth_net_by_sido | Í≤ΩÎ∂Å | f          |   -8839 |   -1920 |          -10759 |     -9214
+(17∞≥ «‡)
+
+********** ƒı∏Æ **********
+SELECT '11_top_inter_sido_od' AS check_name,
+       origin,
+       destination,
+       movers,
+       origin_capital,
+       destination_capital
+FROM migration.v_inter_sido_od_2025
+ORDER BY movers DESC
+LIMIT 10;
+**************************
+
+      check_name      | origin | destination | movers | origin_capital | destination_capital 
+----------------------+--------+-------------+--------+----------------+---------------------
+ 11_top_inter_sido_od | ÏÑúÏö∏   | Í≤ΩÍ∏∞        | 276867 | t              | t
+ 11_top_inter_sido_od | Í≤ΩÍ∏∞   | ÏÑúÏö∏        | 235668 | t              | t
+ 11_top_inter_sido_od | Í≤ΩÍ∏∞   | Ïù∏Ï≤ú        |  73089 | t              | t
+ 11_top_inter_sido_od | Ïù∏Ï≤ú   | Í≤ΩÍ∏∞        |  57580 | t              | t
+ 11_top_inter_sido_od | ÏÑúÏö∏   | Ïù∏Ï≤ú        |  46570 | t              | t
+ 11_top_inter_sido_od | Î∂ÄÏÇ∞   | Í≤ΩÎÇ®        |  43163 | f              | f
+ 11_top_inter_sido_od | Í≤ΩÎÇ®   | Î∂ÄÏÇ∞        |  40742 | f              | f
+ 11_top_inter_sido_od | Í≤ΩÎ∂Å   | ÎåÄÍµ¨        |  37837 | f              | f
+ 11_top_inter_sido_od | Í≤ΩÍ∏∞   | Ï∂©ÎÇ®        |  36471 | t              | f
+ 11_top_inter_sido_od | Ïù∏Ï≤ú   | ÏÑúÏö∏        |  34098 | t              | t
+(10∞≥ «‡)
+
+********** ƒı∏Æ **********
+DO $validation$
+DECLARE
+    national_2025 bigint;
+    youth_2025 bigint;
+    seoul_20_24 bigint;
+    seoul_30_34 bigint;
+    capital_net bigint;
+    latest_audit record;
+    table_mismatch int;
+BEGIN
+    SELECT movers_total INTO national_2025
+    FROM migration.national_movers_yearly
+    WHERE year = 2025;
+
+    SELECT sum(movers) INTO youth_2025
+    FROM migration.age_movers_yearly
+    WHERE year = 2025
+      AND gender = 'all'
+      AND age_group IN ('20-24', '25-29', '30-34', '35-39');
+
+    SELECT net INTO seoul_20_24
+    FROM migration.sido_age_net_2025
+    WHERE gender = 'all' AND sido = 'ÏÑúÏö∏' AND age_group = '20-24';
+
+    SELECT net INTO seoul_30_34
+    FROM migration.sido_age_net_2025
+    WHERE gender = 'all' AND sido = 'ÏÑúÏö∏' AND age_group = '30-34';
+
+    SELECT net INTO capital_net
+    FROM migration.capital_yearly
+    WHERE year = 2025;
+
+    SELECT * INTO latest_audit
+    FROM migration.load_audit
+    ORDER BY load_id DESC
+    LIMIT 1;
+
+    SELECT count(*) INTO table_mismatch
+    FROM (
+        SELECT count(*) AS actual_rows, 56::bigint AS expected_rows FROM migration.national_movers_yearly
+        UNION ALL SELECT count(*), 1134 FROM migration.age_movers_yearly
+        UNION ALL SELECT count(*), 1134 FROM migration.sido_flow_yearly
+        UNION ALL SELECT count(*), 54 FROM migration.sido_gender_2025
+        UNION ALL SELECT count(*), 918 FROM migration.sido_age_net_2025
+        UNION ALL SELECT count(*), 972 FROM migration.od_movers_2025
+        UNION ALL SELECT count(*), 972 FROM migration.od_net_2025
+        UNION ALL SELECT count(*), 37 FROM migration.capital_yearly
+        UNION ALL SELECT count(*), 39 FROM migration.monthly_movers
+        UNION ALL SELECT count(*), 720 FROM migration.reason_2025
+    ) AS counts
+    WHERE actual_rows <> expected_rows;
+
+    IF national_2025 <> 6117784
+       OR youth_2025 <> 2761243
+       OR seoul_20_24 <> 25664
+       OR seoul_30_34 <> -10861
+       OR capital_net <> 38465
+       OR table_mismatch <> 0 THEN
+        RAISE EXCEPTION
+            'Row reconciliation failed: movers %, youth %, seoul 20-24 %, seoul 30-34 %, capital %, table mismatches %',
+            national_2025, youth_2025, seoul_20_24, seoul_30_34, capital_net, table_mismatch;
+    END IF;
+
+    IF latest_audit IS NULL
+       OR latest_audit.status <> 'success'
+       OR latest_audit.source_sha256 <> 'FE066C40AAE0AE5C34C67947B404DC8943405C9BF0A7952DA09B0CF26D901E9D' THEN
+        RAISE EXCEPTION 'Load audit reconciliation failed';
+    END IF;
+
+    RAISE NOTICE 'PASS: source, audit, and PostgreSQL migration tables reconcile (2025 movers %)', national_2025;
+END
+$validation$;
+**************************
+
+DO

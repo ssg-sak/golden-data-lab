@@ -1,0 +1,120 @@
+ȭ����� ���� ��� ��(��ü �ڷ� ��� ������).
+�۾�����ð� ����
+      check_name       |  database_name  | database_user |                            postgres_version                             |     validation_started_at     
+-----------------------+-----------------+---------------+-------------------------------------------------------------------------+-------------------------------
+ 00_execution_identity | golden_data_lab | postgres      | PostgreSQL 18.4 on x86_64-windows, compiled by msvc-19.44.35227, 64-bit | 2026-08-29 11:48:56.215249+09
+(1�� ��)
+
+�۾��ð�: 0.577 ms
+  check_name   | load_id |            source_file_name             |                          source_sha256                           | source_size_bytes |                                                                                                                 table_row_counts                                                                                                                 |          started_at           |          finished_at          | database_user | loader_version | status  
+---------------+---------+-----------------------------------------+------------------------------------------------------------------+-------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------+-------------------------------+---------------+----------------+---------
+ 00_load_audit |       1 | 2025_domestic_migration_statistics.xlsx | FE066C40AAE0AE5C34C67947B404DC8943405C9BF0A7952DA09B0CF26D901E9D |            204601 | {"od_net_2025": 972, "reason_2025": 720, "capital_yearly": 37, "monthly_movers": 39, "od_movers_2025": 972, "sido_flow_yearly": 1134, "sido_gender_2025": 54, "age_movers_yearly": 1134, "sido_age_net_2025": 918, "national_movers_yearly": 56} | 2026-08-29 11:48:55.621014+09 | 2026-08-29 11:48:55.981759+09 | postgres      | 1.0.0          | success
+(1�� ��)
+
+�۾��ð�: 3.228 ms
+       check_name        | actual_value | expected_value | passed 
+-------------------------+--------------+----------------+--------
+ 01_national_2025_movers |      6117784 |        6117784 | t
+(1�� ��)
+
+�۾��ð�: 1.845 ms
+     check_name      |       table_name       | actual_rows | expected_rows | passed 
+---------------------+------------------------+-------------+---------------+--------
+ 02_table_row_counts | age_movers_yearly      |        1134 |          1134 | t
+ 02_table_row_counts | capital_yearly         |          37 |            37 | t
+ 02_table_row_counts | monthly_movers         |          39 |            39 | t
+ 02_table_row_counts | national_movers_yearly |          56 |            56 | t
+ 02_table_row_counts | od_movers_2025         |         972 |           972 | t
+ 02_table_row_counts | od_net_2025            |         972 |           972 | t
+ 02_table_row_counts | reason_2025            |         720 |           720 | t
+ 02_table_row_counts | sido_age_net_2025      |         918 |           918 | t
+ 02_table_row_counts | sido_flow_yearly       |        1134 |          1134 | t
+ 02_table_row_counts | sido_gender_2025       |          54 |            54 | t
+(10�� ��)
+
+�۾��ð�: 12.700 ms
+       check_name       | min_year | max_year | passed 
+------------------------+----------+----------+--------
+ 03_year_range_national |     1970 |     2025 | t
+(1�� ��)
+
+�۾��ð�: 0.483 ms
+   check_name    |      column_name      | null_rows | passed 
+-----------------+-----------------------+-----------+--------
+ 04_null_profile | national_movers_total |         0 | t
+ 04_null_profile | sido_age_net          |         0 | t
+ 04_null_profile | od_movers             |         0 | t
+(3�� ��)
+
+�۾��ð�: 0.708 ms
+      check_name      | actual_net | expected_net | passed 
+----------------------+------------+--------------+--------
+ 05_national_net_zero |          0 |            0 | t
+(1�� ��)
+
+�۾��ð�: 0.523 ms
+      check_name      | actual_value | expected_value | passed 
+----------------------+--------------+----------------+--------
+ 06_youth_movers_2025 |      2761243 |        2761243 | t
+(1�� ��)
+
+�۾��ð�: 0.795 ms
+    check_name    | age_group | actual_net | expected_net | passed 
+------------------+-----------+------------+--------------+--------
+ 07_seoul_age_net | 20-24     |      25664 |        25664 | t
+ 07_seoul_age_net | 30-34     |     -10861 |       -10861 | t
+(2�� ��)
+
+�۾��ð�: 0.456 ms
+        check_name        | implied_inter_sido_in | sheet4_inter_sido_in | passed 
+--------------------------+-----------------------+----------------------+--------
+ 08_od_row_is_destination |                438327 |               438327 | t
+(1�� ��)
+
+�۾��ð�: 0.605 ms
+     check_name      | actual_net | implied_net | passed 
+---------------------+------------+-------------+--------
+ 09_capital_net_2025 |      38465 |       38465 | t
+(1�� ��)
+
+�۾��ð�: 0.295 ms
+      check_name      | sido | is_capital | net_20s | net_30s | net_youth_20_39 | net_total 
+----------------------+------+------------+---------+---------+-----------------+-----------
+ 10_youth_net_by_sido | 경기 | t          |    7439 |   13614 |           21053 |     32970
+ 10_youth_net_by_sido | 서울 | t          |   35937 |  -18730 |           17207 |    -26769
+ 10_youth_net_by_sido | 인천 | t          |    5004 |    7468 |           12472 |     32264
+ 10_youth_net_by_sido | 충북 | f          |     450 |    2093 |            2543 |     10789
+ 10_youth_net_by_sido | 대전 | f          |    2248 |     185 |            2433 |      2824
+ 10_youth_net_by_sido | 세종 | f          |     294 |     951 |            1245 |       -47
+ 10_youth_net_by_sido | 충남 | f          |   -1133 |    1425 |             292 |      8266
+ 10_youth_net_by_sido | 울산 | f          |   -1154 |      42 |           -1112 |     -5474
+ 10_youth_net_by_sido | 제주 | f          |   -2198 |    -248 |           -2446 |     -4273
+ 10_youth_net_by_sido | 강원 | f          |   -3765 |    -412 |           -4177 |     -1387
+ 10_youth_net_by_sido | 전남 | f          |   -5094 |     897 |           -4197 |      1334
+ 10_youth_net_by_sido | 대구 | f          |   -4884 |     211 |           -4673 |     -4272
+ 10_youth_net_by_sido | 전북 | f          |   -5439 |    -635 |           -6074 |     -3575
+ 10_youth_net_by_sido | 부산 | f          |   -4510 |   -2718 |           -7228 |    -12181
+ 10_youth_net_by_sido | 광주 | f          |   -5227 |   -2807 |           -8034 |    -13678
+ 10_youth_net_by_sido | 경남 | f          |   -9129 |     584 |           -8545 |     -7577
+ 10_youth_net_by_sido | 경북 | f          |   -8839 |   -1920 |          -10759 |     -9214
+(17�� ��)
+
+�۾��ð�: 1.007 ms
+      check_name      | origin | destination | movers | origin_capital | destination_capital 
+----------------------+--------+-------------+--------+----------------+---------------------
+ 11_top_inter_sido_od | 서울   | 경기        | 276867 | t              | t
+ 11_top_inter_sido_od | 경기   | 서울        | 235668 | t              | t
+ 11_top_inter_sido_od | 경기   | 인천        |  73089 | t              | t
+ 11_top_inter_sido_od | 인천   | 경기        |  57580 | t              | t
+ 11_top_inter_sido_od | 서울   | 인천        |  46570 | t              | t
+ 11_top_inter_sido_od | 부산   | 경남        |  43163 | f              | f
+ 11_top_inter_sido_od | 경남   | 부산        |  40742 | f              | f
+ 11_top_inter_sido_od | 경북   | 대구        |  37837 | f              | f
+ 11_top_inter_sido_od | 경기   | 충남        |  36471 | t              | f
+ 11_top_inter_sido_od | 인천   | 서울        |  34098 | t              | t
+(10�� ��)
+
+�۾��ð�: 0.694 ms
+DO
+�۾��ð�: 6.882 ms
+psql:D:/golden-data-lab/golden-data-lab/cases/02_youth_migration_dynamics/sql/02_validate_load.sql:239: 알림:  PASS: source, audit, and PostgreSQL migration tables reconcile (2025 movers 6117784)

@@ -1,0 +1,729 @@
+{
+  "source_file": "2025_domestic_migration_statistics.xlsx",
+  "sha256": "FE066C40AAE0AE5C34C67947B404DC8943405C9BF0A7952DA09B0CF26D901E9D",
+  "expected_sha256": "FE066C40AAE0AE5C34C67947B404DC8943405C9BF0A7952DA09B0CF26D901E9D",
+  "snapshot_year": 2025,
+  "quality_checks": 14,
+  "quality_passed": 14,
+  "quality_failed": [],
+  "kpis": [
+    {
+      "kpi": "Total movers 2025",
+      "value": 6117784,
+      "unit": "persons",
+      "sido": null
+    },
+    {
+      "kpi": "YoY change in total movers 2025",
+      "value": -2.6,
+      "unit": "percent",
+      "sido": null
+    },
+    {
+      "kpi": "Youth movers 20-39, 2025",
+      "value": 2761243,
+      "unit": "persons",
+      "sido": null
+    },
+    {
+      "kpi": "Youth share of movers 2025",
+      "value": 0.4513469256,
+      "unit": "share",
+      "sido": null
+    },
+    {
+      "kpi": "Inter-sido movers 2025",
+      "value": 2185913,
+      "unit": "persons",
+      "sido": null
+    },
+    {
+      "kpi": "Capital net vs non-capital 2025",
+      "value": 38465,
+      "unit": "persons",
+      "sido": null
+    },
+    {
+      "kpi": "Youth 20-39 net, top inflow sido",
+      "value": 21053,
+      "unit": "persons",
+      "sido": "경기"
+    },
+    {
+      "kpi": "Seoul youth 20-39 net 2025",
+      "value": 17207,
+      "unit": "persons",
+      "sido": null
+    },
+    {
+      "kpi": "Youth age bands used",
+      "value": "20-24+25-29+30-34+35-39",
+      "unit": "definition",
+      "sido": null
+    }
+  ],
+  "typology": [
+    {
+      "typology": "Early Career Magnet",
+      "typology_ko": "초입 유입·후기 유출형",
+      "sido_count": 1,
+      "youth_net_sum": 17207,
+      "total_net_sum": -26769,
+      "sidos": "서울"
+    },
+    {
+      "typology": "Dual Magnet",
+      "typology_ko": "청년 유입형",
+      "sido_count": 5,
+      "youth_net_sum": 39746,
+      "total_net_sum": 78800,
+      "sidos": "경기, 인천, 충북, 대전, 세종"
+    },
+    {
+      "typology": "Family Settle",
+      "typology_ko": "후기 정착형",
+      "sido_count": 5,
+      "youth_net_sum": -18235,
+      "total_net_sum": -7723,
+      "sidos": "충남, 울산, 전남, 대구, 경남"
+    },
+    {
+      "typology": "Youth Outflow",
+      "typology_ko": "청년 유출형",
+      "sido_count": 6,
+      "youth_net_sum": -38718,
+      "total_net_sum": -44308,
+      "sidos": "제주, 강원, 전북, 부산, 광주, 경북"
+    }
+  ],
+  "youth_profile": [
+    {
+      "sido": "경기",
+      "net_total": 32970,
+      "net_youth_20_39": 21053,
+      "net_youth_20_34": 17155,
+      "net_20s": 7439,
+      "net_30s": 13614,
+      "net_20_24": 2486,
+      "net_25_29": 4953,
+      "net_30_34": 9716,
+      "net_35_39": 3898,
+      "year": 2025,
+      "gender": "all",
+      "is_capital": true,
+      "typology": "Dual Magnet",
+      "typology_ko": "청년 유입형",
+      "youth_share_of_abs_net": 0.6385501971
+    },
+    {
+      "sido": "서울",
+      "net_total": -26769,
+      "net_youth_20_39": 17207,
+      "net_youth_20_34": 25076,
+      "net_20s": 35937,
+      "net_30s": -18730,
+      "net_20_24": 25664,
+      "net_25_29": 10273,
+      "net_30_34": -10861,
+      "net_35_39": -7869,
+      "year": 2025,
+      "gender": "all",
+      "is_capital": true,
+      "typology": "Early Career Magnet",
+      "typology_ko": "초입 유입·후기 유출형",
+      "youth_share_of_abs_net": 0.6427957712
+    },
+    {
+      "sido": "인천",
+      "net_total": 32264,
+      "net_youth_20_39": 12472,
+      "net_youth_20_34": 8834,
+      "net_20s": 5004,
+      "net_30s": 7468,
+      "net_20_24": 1572,
+      "net_25_29": 3432,
+      "net_30_34": 3830,
+      "net_35_39": 3638,
+      "year": 2025,
+      "gender": "all",
+      "is_capital": true,
+      "typology": "Dual Magnet",
+      "typology_ko": "청년 유입형",
+      "youth_share_of_abs_net": 0.3865608728
+    },
+    {
+      "sido": "충북",
+      "net_total": 10789,
+      "net_youth_20_39": 2543,
+      "net_youth_20_34": 1575,
+      "net_20s": 450,
+      "net_30s": 2093,
+      "net_20_24": -546,
+      "net_25_29": 996,
+      "net_30_34": 1125,
+      "net_35_39": 968,
+      "year": 2025,
+      "gender": "all",
+      "is_capital": false,
+      "typology": "Dual Magnet",
+      "typology_ko": "청년 유입형",
+      "youth_share_of_abs_net": 0.2357030309
+    },
+    {
+      "sido": "대전",
+      "net_total": 2824,
+      "net_youth_20_39": 2433,
+      "net_youth_20_34": 2568,
+      "net_20s": 2248,
+      "net_30s": 185,
+      "net_20_24": 2042,
+      "net_25_29": 206,
+      "net_30_34": 320,
+      "net_35_39": -135,
+      "year": 2025,
+      "gender": "all",
+      "is_capital": false,
+      "typology": "Dual Magnet",
+      "typology_ko": "청년 유입형",
+      "youth_share_of_abs_net": 0.8615439093
+    },
+    {
+      "sido": "세종",
+      "net_total": -47,
+      "net_youth_20_39": 1245,
+      "net_youth_20_34": 1141,
+      "net_20s": 294,
+      "net_30s": 951,
+      "net_20_24": -479,
+      "net_25_29": 773,
+      "net_30_34": 847,
+      "net_35_39": 104,
+      "year": 2025,
+      "gender": "all",
+      "is_capital": false,
+      "typology": "Dual Magnet",
+      "typology_ko": "청년 유입형",
+      "youth_share_of_abs_net": 26.4893617021
+    },
+    {
+      "sido": "충남",
+      "net_total": 8266,
+      "net_youth_20_39": 292,
+      "net_youth_20_34": -280,
+      "net_20s": -1133,
+      "net_30s": 1425,
+      "net_20_24": -2343,
+      "net_25_29": 1210,
+      "net_30_34": 853,
+      "net_35_39": 572,
+      "year": 2025,
+      "gender": "all",
+      "is_capital": false,
+      "typology": "Family Settle",
+      "typology_ko": "후기 정착형",
+      "youth_share_of_abs_net": 0.0353254295
+    },
+    {
+      "sido": "울산",
+      "net_total": -5474,
+      "net_youth_20_39": -1112,
+      "net_youth_20_34": -909,
+      "net_20s": -1154,
+      "net_30s": 42,
+      "net_20_24": -1740,
+      "net_25_29": 586,
+      "net_30_34": 245,
+      "net_35_39": -203,
+      "year": 2025,
+      "gender": "all",
+      "is_capital": false,
+      "typology": "Family Settle",
+      "typology_ko": "후기 정착형",
+      "youth_share_of_abs_net": 0.2031421264
+    },
+    {
+      "sido": "제주",
+      "net_total": -4273,
+      "net_youth_20_39": -2446,
+      "net_youth_20_34": -2365,
+      "net_20s": -2198,
+      "net_30s": -248,
+      "net_20_24": -1590,
+      "net_25_29": -608,
+      "net_30_34": -167,
+      "net_35_39": -81,
+      "year": 2025,
+      "gender": "all",
+      "is_capital": false,
+      "typology": "Youth Outflow",
+      "typology_ko": "청년 유출형",
+      "youth_share_of_abs_net": 0.5724315469
+    },
+    {
+      "sido": "강원",
+      "net_total": -1387,
+      "net_youth_20_39": -4177,
+      "net_youth_20_34": -4032,
+      "net_20s": -3765,
+      "net_30s": -412,
+      "net_20_24": -2293,
+      "net_25_29": -1472,
+      "net_30_34": -267,
+      "net_35_39": -145,
+      "year": 2025,
+      "gender": "all",
+      "is_capital": false,
+      "typology": "Youth Outflow",
+      "typology_ko": "청년 유출형",
+      "youth_share_of_abs_net": 3.0115356885
+    },
+    {
+      "sido": "전남",
+      "net_total": 1334,
+      "net_youth_20_39": -4197,
+      "net_youth_20_34": -4755,
+      "net_20s": -5094,
+      "net_30s": 897,
+      "net_20_24": -3790,
+      "net_25_29": -1304,
+      "net_30_34": 339,
+      "net_35_39": 558,
+      "year": 2025,
+      "gender": "all",
+      "is_capital": false,
+      "typology": "Family Settle",
+      "typology_ko": "후기 정착형",
+      "youth_share_of_abs_net": 3.1461769115
+    },
+    {
+      "sido": "대구",
+      "net_total": -4272,
+      "net_youth_20_39": -4673,
+      "net_youth_20_34": -5328,
+      "net_20s": -4884,
+      "net_30s": 211,
+      "net_20_24": -1659,
+      "net_25_29": -3225,
+      "net_30_34": -444,
+      "net_35_39": 655,
+      "year": 2025,
+      "gender": "all",
+      "is_capital": false,
+      "typology": "Family Settle",
+      "typology_ko": "후기 정착형",
+      "youth_share_of_abs_net": 1.0938670412
+    },
+    {
+      "sido": "전북",
+      "net_total": -3575,
+      "net_youth_20_39": -6074,
+      "net_youth_20_34": -6036,
+      "net_20s": -5439,
+      "net_30s": -635,
+      "net_20_24": -2849,
+      "net_25_29": -2590,
+      "net_30_34": -597,
+      "net_35_39": -38,
+      "year": 2025,
+      "gender": "all",
+      "is_capital": false,
+      "typology": "Youth Outflow",
+      "typology_ko": "청년 유출형",
+      "youth_share_of_abs_net": 1.699020979
+    },
+    {
+      "sido": "부산",
+      "net_total": -12181,
+      "net_youth_20_39": -7228,
+      "net_youth_20_34": -6746,
+      "net_20s": -4510,
+      "net_30s": -2718,
+      "net_20_24": 927,
+      "net_25_29": -5437,
+      "net_30_34": -2236,
+      "net_35_39": -482,
+      "year": 2025,
+      "gender": "all",
+      "is_capital": false,
+      "typology": "Youth Outflow",
+      "typology_ko": "청년 유출형",
+      "youth_share_of_abs_net": 0.5933831377
+    },
+    {
+      "sido": "광주",
+      "net_total": -13678,
+      "net_youth_20_39": -8034,
+      "net_youth_20_34": -6971,
+      "net_20s": -5227,
+      "net_30s": -2807,
+      "net_20_24": -2064,
+      "net_25_29": -3163,
+      "net_30_34": -1744,
+      "net_35_39": -1063,
+      "year": 2025,
+      "gender": "all",
+      "is_capital": false,
+      "typology": "Youth Outflow",
+      "typology_ko": "청년 유출형",
+      "youth_share_of_abs_net": 0.5873665741
+    },
+    {
+      "sido": "경남",
+      "net_total": -7577,
+      "net_youth_20_39": -8545,
+      "net_youth_20_34": -8863,
+      "net_20s": -9129,
+      "net_30s": 584,
+      "net_20_24": -7496,
+      "net_25_29": -1633,
+      "net_30_34": 266,
+      "net_35_39": 318,
+      "year": 2025,
+      "gender": "all",
+      "is_capital": false,
+      "typology": "Family Settle",
+      "typology_ko": "후기 정착형",
+      "youth_share_of_abs_net": 1.1277550482
+    },
+    {
+      "sido": "경북",
+      "net_total": -9214,
+      "net_youth_20_39": -10759,
+      "net_youth_20_34": -10064,
+      "net_20s": -8839,
+      "net_30s": -1920,
+      "net_20_24": -5842,
+      "net_25_29": -2997,
+      "net_30_34": -1225,
+      "net_35_39": -695,
+      "year": 2025,
+      "gender": "all",
+      "is_capital": false,
+      "typology": "Youth Outflow",
+      "typology_ko": "청년 유출형",
+      "youth_share_of_abs_net": 1.167679618
+    }
+  ],
+  "priority": [
+    {
+      "priority_group": "Early-career inflow, later outflow",
+      "sido": "서울",
+      "typology_ko": "초입 유입·후기 유출형",
+      "net_youth_20_39": 17207,
+      "net_20s": 35937,
+      "net_30s": -18730,
+      "net_total": -26769,
+      "is_capital": true
+    },
+    {
+      "priority_group": "Youth inflow (20s and 30s)",
+      "sido": "경기",
+      "typology_ko": "청년 유입형",
+      "net_youth_20_39": 21053,
+      "net_20s": 7439,
+      "net_30s": 13614,
+      "net_total": 32970,
+      "is_capital": true
+    },
+    {
+      "priority_group": "Youth inflow (20s and 30s)",
+      "sido": "인천",
+      "typology_ko": "청년 유입형",
+      "net_youth_20_39": 12472,
+      "net_20s": 5004,
+      "net_30s": 7468,
+      "net_total": 32264,
+      "is_capital": true
+    },
+    {
+      "priority_group": "Youth inflow (20s and 30s)",
+      "sido": "충북",
+      "typology_ko": "청년 유입형",
+      "net_youth_20_39": 2543,
+      "net_20s": 450,
+      "net_30s": 2093,
+      "net_total": 10789,
+      "is_capital": false
+    },
+    {
+      "priority_group": "20s outflow, 30s inflow",
+      "sido": "충남",
+      "typology_ko": "후기 정착형",
+      "net_youth_20_39": 292,
+      "net_20s": -1133,
+      "net_30s": 1425,
+      "net_total": 8266,
+      "is_capital": false
+    },
+    {
+      "priority_group": "20s outflow, 30s inflow",
+      "sido": "울산",
+      "typology_ko": "후기 정착형",
+      "net_youth_20_39": -1112,
+      "net_20s": -1154,
+      "net_30s": 42,
+      "net_total": -5474,
+      "is_capital": false
+    },
+    {
+      "priority_group": "20s outflow, 30s inflow",
+      "sido": "전남",
+      "typology_ko": "후기 정착형",
+      "net_youth_20_39": -4197,
+      "net_20s": -5094,
+      "net_30s": 897,
+      "net_total": 1334,
+      "is_capital": false
+    },
+    {
+      "priority_group": "20s outflow, 30s inflow",
+      "sido": "대구",
+      "typology_ko": "후기 정착형",
+      "net_youth_20_39": -4673,
+      "net_20s": -4884,
+      "net_30s": 211,
+      "net_total": -4272,
+      "is_capital": false
+    },
+    {
+      "priority_group": "20s outflow, 30s inflow",
+      "sido": "경남",
+      "typology_ko": "후기 정착형",
+      "net_youth_20_39": -8545,
+      "net_20s": -9129,
+      "net_30s": 584,
+      "net_total": -7577,
+      "is_capital": false
+    },
+    {
+      "priority_group": "Youth net outflow",
+      "sido": "경북",
+      "typology_ko": "청년 유출형",
+      "net_youth_20_39": -10759,
+      "net_20s": -8839,
+      "net_30s": -1920,
+      "net_total": -9214,
+      "is_capital": false
+    },
+    {
+      "priority_group": "Youth net outflow",
+      "sido": "광주",
+      "typology_ko": "청년 유출형",
+      "net_youth_20_39": -8034,
+      "net_20s": -5227,
+      "net_30s": -2807,
+      "net_total": -13678,
+      "is_capital": false
+    },
+    {
+      "priority_group": "Youth net outflow",
+      "sido": "부산",
+      "typology_ko": "청년 유출형",
+      "net_youth_20_39": -7228,
+      "net_20s": -4510,
+      "net_30s": -2718,
+      "net_total": -12181,
+      "is_capital": false
+    },
+    {
+      "priority_group": "Youth net outflow",
+      "sido": "전북",
+      "typology_ko": "청년 유출형",
+      "net_youth_20_39": -6074,
+      "net_20s": -5439,
+      "net_30s": -635,
+      "net_total": -3575,
+      "is_capital": false
+    },
+    {
+      "priority_group": "Youth net outflow",
+      "sido": "강원",
+      "typology_ko": "청년 유출형",
+      "net_youth_20_39": -4177,
+      "net_20s": -3765,
+      "net_30s": -412,
+      "net_total": -1387,
+      "is_capital": false
+    }
+  ],
+  "top_od": [
+    {
+      "origin": "서울",
+      "destination": "경기",
+      "movers": 276867,
+      "flow_block": "capital_to_capital"
+    },
+    {
+      "origin": "경기",
+      "destination": "서울",
+      "movers": 235668,
+      "flow_block": "capital_to_capital"
+    },
+    {
+      "origin": "경기",
+      "destination": "인천",
+      "movers": 73089,
+      "flow_block": "capital_to_capital"
+    },
+    {
+      "origin": "인천",
+      "destination": "경기",
+      "movers": 57580,
+      "flow_block": "capital_to_capital"
+    },
+    {
+      "origin": "서울",
+      "destination": "인천",
+      "movers": 46570,
+      "flow_block": "capital_to_capital"
+    },
+    {
+      "origin": "부산",
+      "destination": "경남",
+      "movers": 43163,
+      "flow_block": "noncapital_to_noncapital"
+    },
+    {
+      "origin": "경남",
+      "destination": "부산",
+      "movers": 40742,
+      "flow_block": "noncapital_to_noncapital"
+    },
+    {
+      "origin": "경북",
+      "destination": "대구",
+      "movers": 37837,
+      "flow_block": "noncapital_to_noncapital"
+    },
+    {
+      "origin": "경기",
+      "destination": "충남",
+      "movers": 36471,
+      "flow_block": "capital_to_noncapital"
+    },
+    {
+      "origin": "인천",
+      "destination": "서울",
+      "movers": 34098,
+      "flow_block": "capital_to_capital"
+    }
+  ],
+  "concentration": {
+    "positive_sido_count": 7,
+    "positive_youth_net_sum": 57245,
+    "top3_sidos": [
+      "경기",
+      "서울",
+      "인천"
+    ],
+    "top3_values": [
+      21053,
+      17207,
+      12472
+    ],
+    "top3_share_of_positive_youth_net": 0.8862258712551314
+  },
+  "sensitivity_sign_flips": 1,
+  "hypothesis_summary": [
+    {
+      "hypothesis": "H1",
+      "p_value": 9.537e-07,
+      "significant_at_0.05": true,
+      "effect": 1.0,
+      "statement": "연도별로 짝지은 20-24세 이동률이 40-44세 이동률과 같다"
+    },
+    {
+      "hypothesis": "H2",
+      "p_value": 0.695131076,
+      "significant_at_0.05": false,
+      "effect": 0.0909090909,
+      "statement": "2005-2025 청년(20-39) 이동자 비중이 연도와 상관없다"
+    },
+    {
+      "hypothesis": "H3",
+      "p_value": 0.0108078898,
+      "significant_at_0.05": true,
+      "effect": 0.6004901961,
+      "statement": "2025 시도 전체 순이동과 청년(20-39) 순이동이 상관없다"
+    },
+    {
+      "hypothesis": "H4",
+      "p_value": 0.0001033561,
+      "significant_at_0.05": true,
+      "effect": 0.7714285714,
+      "statement": "수도권 순이동(비수도권 대비)의 1990-2010 분포와 2011-2025 분포가 같다"
+    }
+  ],
+  "h1": {
+    "n": 21,
+    "statistic": 0.0,
+    "p_value": 9.5367431640625e-07,
+    "median_diff": 4.209961827999997,
+    "rank_biserial": 1.0,
+    "alpha": 0.05,
+    "significant": true,
+    "hypothesis": "H1",
+    "statement": "연도별로 짝지은 20-24세 이동률이 40-44세 이동률과 같다",
+    "alternative": "two-sided Wilcoxon signed-rank on yearly rate differences",
+    "median_20_24": 19.254511523,
+    "median_40_44": 14.447496085
+  },
+  "h2": {
+    "hypothesis": "H2",
+    "statement": "2005-2025 청년(20-39) 이동자 비중이 연도와 상관없다",
+    "n": 21,
+    "spearman_rho": 0.09090909090909091,
+    "p_value": 0.6951310760397714,
+    "alpha": 0.05,
+    "significant": false,
+    "share_2005": 0.4600164154045576,
+    "share_2025": 0.45134692561881884
+  },
+  "h3": {
+    "hypothesis": "H3",
+    "statement": "2025 시도 전체 순이동과 청년(20-39) 순이동이 상관없다",
+    "n": 17,
+    "spearman_rho": 0.6004901960784315,
+    "p_value": 0.010807889752450442,
+    "alpha": 0.05,
+    "significant": true,
+    "same_sign_sidos": 14,
+    "same_sign_share": 0.8235294117647058
+  },
+  "h4": {
+    "hypothesis": "H4",
+    "statement": "수도권 순이동(비수도권 대비)의 1990-2010 분포와 2011-2025 분포가 같다",
+    "n_early": 21,
+    "n_late": 15,
+    "statistic": 279.0,
+    "p_value": 0.00010335612043297065,
+    "cliffs_delta": 0.7714285714285714,
+    "median_early": 122441.0,
+    "median_late": 36643.0,
+    "alpha": 0.05,
+    "significant": true,
+    "note": "등록 이동의 역사 구간 비교이며 수도권 정책 효과의 인과 증거가 아니다"
+  },
+  "capital_flows": [
+    {
+      "flow_block": "capital_to_capital",
+      "movers": 723872,
+      "share": 0.3311531612
+    },
+    {
+      "flow_block": "noncapital_to_noncapital",
+      "movers": 663504,
+      "share": 0.3035363256
+    },
+    {
+      "flow_block": "noncapital_to_capital",
+      "movers": 418501,
+      "share": 0.1914536397
+    },
+    {
+      "flow_block": "capital_to_noncapital",
+      "movers": 380036,
+      "share": 0.1738568735
+    }
+  ]
+}
