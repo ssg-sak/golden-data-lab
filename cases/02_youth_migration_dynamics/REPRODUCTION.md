@@ -36,7 +36,6 @@ python -m unittest discover -s cases/02_youth_migration_dynamics/tests -v
 python cases/02_youth_migration_dynamics/src/run_analysis.py
 python cases/02_youth_migration_dynamics/src/build_notebooks.py
 python cases/02_youth_migration_dynamics/src/execute_notebooks.py
-python cases/02_youth_migration_dynamics/src/build_powerbi_pbix.py
 ```
 
 기대 결과:
@@ -47,7 +46,6 @@ python cases/02_youth_migration_dynamics/src/build_powerbi_pbix.py
 - `evidence/dashboard/01_one_page_decision.png`
 - `evidence/figures/01_youth_net_2025.png` (시도 단계색지도)
 - 실행된 `notebooks/01`–`05`
-- `powerbi/CASE02_Youth_Priority.pbix`
 
 핵심 재현 값:
 
@@ -60,7 +58,7 @@ python cases/02_youth_migration_dynamics/src/build_powerbi_pbix.py
 | 서울←경기 이동(전 연령) | 235,668 |
 | 경기←서울 이동(전 연령) | 276,867 |
 
-노트북은 `src/execute_notebooks.py`로 셀 출력을 저장한다. 분석 숫자의 기준 산출물은 `run_analysis.py`다. Power BI 파일은 `src/build_powerbi_pbix.py`가 만든다.
+노트북은 `src/execute_notebooks.py`로 셀 출력을 저장한다. 분석 숫자의 기준 산출물은 `run_analysis.py`다. 한 페이지 화면은 `src/decision_dashboard.py`가 PNG로 만든다.
 
 ## PostgreSQL path (required for SQL Extraction)
 

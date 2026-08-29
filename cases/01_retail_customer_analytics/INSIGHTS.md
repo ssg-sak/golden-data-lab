@@ -39,4 +39,4 @@
 - 2009-12-01~2011-12-09의 해외 온라인 소매 거래이며 현재 소매시장으로 일반화하지 않는다.
 - 국가 필드는 거래 기록상의 국가이며 국적이나 배송 성과가 아니다.
 
-한 페이지 화면은 [`evidence/dashboard/01_one_page_decision.png`](./evidence/dashboard/01_one_page_decision.png)다. Power BI 파일은 [`powerbi/CASE01_Retention_Priority.pbix`](./powerbi/CASE01_Retention_Priority.pbix)다.
+한 페이지 화면은 [`evidence/dashboard/01_one_page_decision.png`](./evidence/dashboard/01_one_page_decision.png)다. 같은 화면을 만드는 노트북은 [`notebooks/05_decision_dashboard.ipynb`](./notebooks/05_decision_dashboard.ipynb)다.

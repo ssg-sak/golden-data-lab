@@ -1,4 +1,4 @@
--- CASE 01 analysis views for Power BI or DBeaver
+-- CASE 01 analysis views for DBeaver
 -- Run in golden_data_lab after the raw load has passed validation.
 -- Filters match src/data_preparation.py purpose splits.
 
