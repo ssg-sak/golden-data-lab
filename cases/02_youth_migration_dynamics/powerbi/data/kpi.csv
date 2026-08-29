@@ -1,10 +1,2 @@
-﻿kpi,value,unit,sido
-Total movers 2025,6117784,persons,
-YoY change in total movers 2025,-2.6,percent,
-"Youth movers 20-39, 2025",2761243,persons,
-Youth share of movers 2025,0.45134692561881884,share,
-Inter-sido movers 2025,2185913,persons,
-Capital net vs non-capital 2025,38465,persons,
-"Youth 20-39 net, top inflow sido",21053,persons,경기
-Seoul youth 20-39 net 2025,17207,persons,
-Youth age bands used,20-24+25-29+30-34+35-39,definition,
+﻿kpi_set,total_movers,yoy_pct,youth_movers,youth_share,inter_sido_movers,capital_net,seoul_youth_net,top_inflow_sido,top_inflow_net,source_sha256
+CASE02,6117784,-2.6,2761243,0.45134692561881884,2185913,38465,17207,경기,21053,FE066C40AAE0AE5C34C67947B404DC8943405C9BF0A7952DA09B0CF26D901E9D

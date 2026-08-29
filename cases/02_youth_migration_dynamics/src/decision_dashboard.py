@@ -5,11 +5,13 @@ from __future__ import annotations
 from pathlib import Path
 
 import matplotlib.pyplot as plt
+import pandas as pd
 from matplotlib.ticker import FuncFormatter
 
 from data_preparation import PreparedMigrationData
 from kpi_segmentation import KPIResults
 from parse_official_tables import OfficialTables
+from sido_map import plot_youth_net_map
 from statistical_analysis import StatisticalResults
 
 
@@ -42,14 +44,8 @@ def save_decision_dashboard(
     fig = plt.figure(figsize=(16, 10.5))
     grid = fig.add_gridspec(2, 3, hspace=0.42, wspace=0.32)
 
-    profile = kpis.youth_profile.sort_values("net_youth_20_39")
-    ax_bar = fig.add_subplot(grid[0, :2])
-    colors = [TYPOLOGY_COLORS[label] for label in profile["typology"]]
-    ax_bar.barh(profile["sido"], profile["net_youth_20_39"], color=colors)
-    ax_bar.axvline(0, color="#333333", linewidth=0.8)
-    ax_bar.set_title("2025 청년(20-39세) 시도 순이동", loc="left", weight="bold")
-    ax_bar.set_xlabel("순이동자 수 (명)")
-    ax_bar.xaxis.set_major_formatter(FuncFormatter(_thousands))
+    ax_map = fig.add_subplot(grid[0, :2])
+    plot_youth_net_map(ax_map, kpis.youth_profile)
 
     ax_type = fig.add_subplot(grid[0, 2])
     summary = kpis.typology_summary
@@ -101,6 +97,7 @@ def save_decision_dashboard(
         0.01,
         0.01,
         "청년=20-39세(5세 구간 합). 시도 간 OD는 전 연령. 유형은 2025 순이동 부호이며 인과가 아니다. "
+        "지도 경계는 통계청 2018 시도(표시를 위해 울릉·독도는 잘랐다). "
         f"H1 20-24 vs 40-44 이동률 Wilcoxon p={stats.h1['p_value']:.1e}.",
         fontsize=8,
         color="#444444",
@@ -113,13 +110,15 @@ def save_decision_dashboard(
 
 def save_youth_net_figure(youth_profile: pd.DataFrame, output_path: Path) -> Path:
     _apply_font()
-    profile = youth_profile.sort_values("net_youth_20_39")
-    fig, ax = plt.subplots(figsize=(9, 6.5))
-    colors = [TYPOLOGY_COLORS[label] for label in profile["typology"]]
-    ax.barh(profile["sido"], profile["net_youth_20_39"], color=colors)
-    ax.axvline(0, color="#333333", linewidth=0.8)
-    ax.set_title("2025 청년(20-39세) 순이동", loc="left", weight="bold")
-    ax.set_xlabel("명")
+    fig, ax = plt.subplots(figsize=(8.2, 10.5))
+    plot_youth_net_map(ax, youth_profile)
+    fig.text(
+        0.02,
+        0.01,
+        "경계: 통계청 2018 시도. 값은 2025 등록 청년(20-39) 순이동. 울릉·독도는 표시 범위 밖.",
+        fontsize=8,
+        color="#444444",
+    )
     fig.tight_layout()
     output_path.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(output_path, dpi=160, bbox_inches="tight")

@@ -1,6 +1,6 @@
 # CASE 02: Youth Migration & Regional Dynamics
 
-이 사례는 Golden Data Lab의 [9단계 표준 분석 방법론](../../docs/methodology.md)을 따른다. 아직 작업이 끝나지 않았다. 파이프라인·SQL 검증·인사이트 초안은 있고, Power BI 파일과 실행된 노트북은 없다.
+이 사례는 Golden Data Lab의 [9단계 표준 분석 방법론](../../docs/methodology.md)을 따른다. 1단계부터 9단계까지 산출물이 있다. 시도 지도는 통계청 2018 경계에 2025 청년 순이동을 붙인 것이다.
 
 분석 용어는 [CASE 02 분석 용어 학습 가이드](./STUDY_GUIDE.md)를 참고한다. PostgreSQL 적재는 [LOAD_GUIDE.md](./LOAD_GUIDE.md)를 따른다. 실행 내역은 [WORK_LOG.md](./WORK_LOG.md)에 있다.
 
@@ -10,13 +10,13 @@
 | --- | --- | --- |
 | 1. Business Question | 확정 | 의사결정, 청년 정의, 수도권 정의, 범위 |
 | 2. SQL Extraction | 완료 | `migration` 스키마, 적재 감사, 검증 SQL `PASS` |
-| 3. Data Quality Check | 코드 완료 | 교차 대사 14건 `PASS`. 노트북은 생성만 됨(셀 출력 미저장) |
-| 4. Python EDA | 코드 완료 | `run_analysis.py`와 막대 PNG. 노트북 셀 출력 미저장 |
-| 5. Statistical Analysis | 코드 완료 | 가설 4개, 정의 민감도. 노트북 셀 출력 미저장 |
-| 6. KPI & Segmentation | 코드 완료 | KPI 사전, 4유형 분류. 노트북 셀 출력 미저장 |
-| 7. Visualization | 진행 중 | 한 페이지 PNG, Power BI용 CSV. `.pbix` 없음 |
-| 8. Insight & Action | 초안 | [`INSIGHTS.md`](./INSIGHTS.md) |
-| 9. Reproduction | 초안 | [`REPRODUCTION.md`](./REPRODUCTION.md) |
+| 3. Data Quality Check | 완료 | 교차 대사 14건 `PASS`, 실행된 `01_data_quality_check.ipynb` |
+| 4. Python EDA | 완료 | 실행된 `02_python_eda.ipynb`, 청년 순이동·OD·이동률 |
+| 5. Statistical Analysis | 완료 | 가설 4개, 정의 민감도, 실행된 `03_statistical_analysis.ipynb` |
+| 6. KPI & Segmentation | 완료 | KPI 사전, 4유형 분류, 실행된 `04_kpi_segmentation.ipynb` |
+| 7. Visualization | 완료 | 시도 단계색지도, 한 페이지 PNG, `CASE02_Youth_Priority.pbix` |
+| 8. Insight & Action | 완료 | [`INSIGHTS.md`](./INSIGHTS.md) |
+| 9. Reproduction | 완료 | [`REPRODUCTION.md`](./REPRODUCTION.md) |
 
 ## 1. Business Question
 
@@ -117,6 +117,4 @@
 
 ## Next Step
 
-아직 남은 작업: Power BI `.pbix`, 노트북 실행 결과 저장, 시도 지도(GeoJSON이 생기면). 시군구·청년 OD는 이 부표에 없어 만들지 않는다.
-
-실행 근거는 [`WORK_LOG.md`](./WORK_LOG.md), 제안은 [`INSIGHTS.md`](./INSIGHTS.md), 재현은 [`REPRODUCTION.md`](./REPRODUCTION.md)다.
+실행 근거는 [`WORK_LOG.md`](./WORK_LOG.md), 제안은 [`INSIGHTS.md`](./INSIGHTS.md), 재현은 [`REPRODUCTION.md`](./REPRODUCTION.md)다. 시군구 순이동과 연령별 시도 간 OD는 KOSIS 별도 표이며, 이 부표·이 지도의 단위는 시도이다.

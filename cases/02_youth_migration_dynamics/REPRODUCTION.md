@@ -13,7 +13,13 @@
 python cases/02_youth_migration_dynamics/src/download_data.py
 ```
 
-공식 URL이 막히면 스크립트가 KDI 사본으로 재시도하고, 해시가 다르면 실패한다.
+공식 URL이 막히면 스크립트가 KDI 사본으로 재시도하고, 해시가 다르면 실패한다. 같은 명령이 시도 경계 GeoJSON도 받아 `data/geo/sido_boundaries.geojson`을 만든다.
+
+시도 경계만 다시 받을 때:
+
+```powershell
+python cases/02_youth_migration_dynamics/src/download_sido_geojson.py
+```
 
 ## Environment
 
@@ -29,6 +35,8 @@ pip install -r requirements.txt
 python -m unittest discover -s cases/02_youth_migration_dynamics/tests -v
 python cases/02_youth_migration_dynamics/src/run_analysis.py
 python cases/02_youth_migration_dynamics/src/build_notebooks.py
+python cases/02_youth_migration_dynamics/src/execute_notebooks.py
+python cases/02_youth_migration_dynamics/src/build_powerbi_pbix.py
 ```
 
 기대 결과:
@@ -37,6 +45,9 @@ python cases/02_youth_migration_dynamics/src/build_notebooks.py
 - 품질 검사 14/14 passed
 - `evidence/analysis_summary.json`
 - `evidence/dashboard/01_one_page_decision.png`
+- `evidence/figures/01_youth_net_2025.png` (시도 단계색지도)
+- 실행된 `notebooks/01`–`05`
+- `powerbi/CASE02_Youth_Priority.pbix`
 
 핵심 재현 값:
 
@@ -49,7 +60,7 @@ python cases/02_youth_migration_dynamics/src/build_notebooks.py
 | 서울←경기 이동(전 연령) | 235,668 |
 | 경기←서울 이동(전 연령) | 276,867 |
 
-노트북은 `notebooks/`에서 커널을 Python 3로 실행한다. 분석 숫자의 기준 산출물은 `run_analysis.py`다.
+노트북은 `src/execute_notebooks.py`로 셀 출력을 저장한다. 분석 숫자의 기준 산출물은 `run_analysis.py`다. Power BI 파일은 `src/build_powerbi_pbix.py`가 만든다.
 
 ## PostgreSQL path (required for SQL Extraction)
 
@@ -74,3 +85,4 @@ PASS: source, audit, and PostgreSQL migration tables reconcile (2025 movers 6117
 - 청년을 19-39로 바꿔 결과를 덮어쓰지 않는다. 비교는 민감도 표로만 한다.
 - 잔여 시트 `8.월별`을 월별 분석에 넣지 않는다.
 - OD를 청년 경로라고 쓰지 않는다.
+- 지도 경계를 2025년 지적 경계라고 쓰지 않는다. 통계청 2018 시도 폴리곤이다.

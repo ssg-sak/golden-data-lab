@@ -40,4 +40,4 @@
 - e-지방지표 청년순이동률(19-39)과 같은 숫자라고 말할 수 없다.
 - 2026년 이후 정책 효과를 예측하지 않는다.
 
-한 페이지 화면은 [`evidence/dashboard/01_one_page_decision.png`](./evidence/dashboard/01_one_page_decision.png)다.
+한 페이지 화면은 [`evidence/dashboard/01_one_page_decision.png`](./evidence/dashboard/01_one_page_decision.png)다. Power BI 파일은 [`powerbi/CASE02_Youth_Priority.pbix`](./powerbi/CASE02_Youth_Priority.pbix)다.

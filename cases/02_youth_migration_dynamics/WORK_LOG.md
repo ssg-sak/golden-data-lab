@@ -63,5 +63,18 @@ PASS: source, audit, and PostgreSQL migration tables reconcile (2025 movers 6117
 
 ## 한계
 
-- 시군구 청년 순이동률 시계열은 이 부표에 없다.
-- GeoJSON이 없어 지도 대신 막대 그래프를 썼다.
+- 시군구 청년 순이동과 연령별 시도 간 OD는 이 부표가 아니라 KOSIS 별도 표다.
+- 지도 경계는 통계청 2018 시도 폴리곤이다. 표시를 위해 울릉·독도는 잘랐다. 경북 값은 시도 전체다.
+
+## 2026-08-29 노트북 실행과 Power BI
+
+- `src/execute_notebooks.py`로 `01`–`05` 노트북을 실행하고 셀 출력을 저장했다.
+- `src/build_powerbi_pbix.py`로 `powerbi/CASE02_Youth_Priority.pbix`를 만들었다. Total movers 6,117,784, 청년 이동자 2,761,243.
+- Power BI에는 집계 CSV만 넣었다. 원본 엑셀과 DB 비밀번호는 넣지 않았다.
+
+## 2026-08-29 시도 경계 지도
+
+- `southkorea/southkorea-maps`의 통계청 2018 시도 GeoJSON을 받아 SHA-256을 잠갔다.
+- 17개 시도를 KOSTAT 코드로 연결해 `data/geo/sido_boundaries.geojson`을 만들었다.
+- 한 페이지 대시보드와 `evidence/figures/01_youth_net_2025.png`를 단계색지도로 바꿨다.
+
