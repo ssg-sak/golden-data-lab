@@ -2,6 +2,8 @@
 
 Golden Data Lab은 여러 도메인의 원천 데이터를 동일한 분석 방법론으로 반복 분석하는 데이터 분석 포트폴리오입니다. SQL 추출부터 데이터 품질, Python 분석, 통계, KPI, 한 페이지 시각화, 실행 제안과 재현성까지 하나의 흐름으로 연결합니다.
 
+공개용 웹 화면은 [GitHub Pages 대시보드](https://ssg-sak.github.io/golden-data-lab/dashboard/)입니다. 검증된 집계만 보여 주며, 분석의 기준 산출물은 각 사례의 PNG와 노트북입니다.
+
 ## Project Goal
 
 - 비즈니스 질문을 측정 가능한 분석 질문으로 바꾸기
@@ -76,6 +78,7 @@ golden-data-lab/
 │   └── 02_youth_migration_dynamics/
 ├── common/
 ├── docs/
+│   ├── dashboard/
 │   ├── methodology.md
 │   └── case_template.md
 ├── .gitignore
@@ -89,6 +92,7 @@ golden-data-lab/
 - Database: PostgreSQL, DBeaver
 - Analysis: Python, pandas, GeoPandas, JupyterLab, scipy
 - Statistics and Visualization: matplotlib, seaborn, scipy.stats
+- Public dashboard: static HTML (`docs/dashboard`)
 - Reproducibility: Git, GitHub, documented SQL and notebooks
 
 ## Quick Start

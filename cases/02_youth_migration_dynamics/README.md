@@ -117,4 +117,4 @@
 
 ## Next Step
 
-실행 근거는 [`WORK_LOG.md`](./WORK_LOG.md), 제안은 [`INSIGHTS.md`](./INSIGHTS.md), 재현은 [`REPRODUCTION.md`](./REPRODUCTION.md)다. 한 페이지 화면은 [`evidence/dashboard/01_one_page_decision.png`](./evidence/dashboard/01_one_page_decision.png), 시도 지도는 [`evidence/figures/01_youth_net_2025.png`](./evidence/figures/01_youth_net_2025.png)다. 시군구 순이동과 연령별 시도 간 OD는 KOSIS 별도 표이며, 이 부표·이 지도의 단위는 시도이다.
+실행 근거는 [`WORK_LOG.md`](./WORK_LOG.md), 제안은 [`INSIGHTS.md`](./INSIGHTS.md), 재현은 [`REPRODUCTION.md`](./REPRODUCTION.md)다. 한 페이지 화면은 [`evidence/dashboard/01_one_page_decision.png`](./evidence/dashboard/01_one_page_decision.png), 시도 지도는 [`evidence/figures/01_youth_net_2025.png`](./evidence/figures/01_youth_net_2025.png)다. 공개 웹 화면은 [GitHub Pages 대시보드](https://ssg-sak.github.io/golden-data-lab/dashboard/)다. 시군구 순이동과 연령별 시도 간 OD는 KOSIS 별도 표이며, 이 부표·이 지도의 단위는 시도이다.

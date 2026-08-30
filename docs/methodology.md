@@ -12,4 +12,4 @@ Golden Data Lab의 모든 분석 사례는 아래의 9단계 표준 흐름을 �
 8. **Insight & Action:** 분석 결과 해석 및 실무 적용 방안(Action Item) 도출
 9. **Reproduction:** 제3자가 동일한 결과를 도출할 수 있도록 환경과 실행 스크립트 문서화
 
-7단계의 산출물은 Jupyter 노트북과 `evidence/dashboard/`의 PNG다. 외부 BI 도구 파일은 쓰지 않는다.
+7단계의 산출물은 Jupyter 노트북과 `evidence/dashboard/`의 PNG다. 외부 BI 도구 파일은 쓰지 않는다. 공개 웹 화면은 `docs/dashboard/`이며 같은 집계를 읽기 전용으로 보여 준다.

@@ -129,5 +129,5 @@ SQL Extraction 단계에서는 데이터를 임의로 정제하지 않고 다음
 
 PostgreSQL 적재부터 재현 문서까지 CASE 01을 완료했다. 실행 근거는 [`WORK_LOG.md`](./WORK_LOG.md), 실행 제안은 [`INSIGHTS.md`](./INSIGHTS.md), 재현 순서는 [`REPRODUCTION.md`](./REPRODUCTION.md)다.
 
-한 페이지 화면은 [`evidence/dashboard/01_one_page_decision.png`](./evidence/dashboard/01_one_page_decision.png)다. 노트북은 [`notebooks/05_decision_dashboard.ipynb`](./notebooks/05_decision_dashboard.ipynb)다. 다음 사례는 CASE 02다.
+한 페이지 화면은 [`evidence/dashboard/01_one_page_decision.png`](./evidence/dashboard/01_one_page_decision.png)다. 노트북은 [`notebooks/05_decision_dashboard.ipynb`](./notebooks/05_decision_dashboard.ipynb)다. 공개 웹 화면은 [GitHub Pages 대시보드](https://ssg-sak.github.io/golden-data-lab/dashboard/)다. 다음 사례는 CASE 02다.
     
