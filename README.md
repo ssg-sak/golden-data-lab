@@ -1,14 +1,37 @@
 # Golden Data Lab
 
-Golden Data Lab은 여러 도메인의 원천 데이터를 동일한 분석 방법론으로 반복 분석하는 데이터 분석 포트폴리오입니다. SQL 추출부터 데이터 품질, Python 분석, 통계, KPI, 한 페이지 시각화, 실행 제안과 재현성까지 하나의 흐름으로 연결합니다.
+[![analysis-tests](https://github.com/ssg-sak/golden-data-lab/actions/workflows/analysis-tests.yml/badge.svg)](https://github.com/ssg-sak/golden-data-lab/actions/workflows/analysis-tests.yml)
 
-## Project Goal
+**SQL → 데이터 품질 → Python EDA → 통계 → KPI → 시각화 → 실행 제안 → 재현성**을 하나의 흐름으로 반복 검증하는 데이터 분석 포트폴리오입니다.
 
-- 비즈니스 질문을 측정 가능한 분석 질문으로 바꾸기
-- SQL과 Python을 역할에 맞게 사용하기
-- 결측치, 중복, 이상치와 지표 정의를 명시적으로 관리하기
-- 분석 결과를 의사결정과 실행 항목으로 연결하기
-- 다른 사람이 같은 결과를 다시 만들 수 있도록 기록하기
+서로 다른 도메인의 원천 데이터를 같은 분석 원칙으로 다루면서, 단순 노트북 결과가 아니라 **분석 질문·지표 정의·품질 기준·통계적 근거·의사결정용 결과물·재현 절차**까지 남기는 것을 목표로 합니다.
+
+## Results at a Glance
+
+| Case | 데이터 | 분석 초점 | 완료 상태 |
+| --- | --- | --- | --- |
+| **CASE 01 · Retail Customer & Revenue** | UCI Online Retail II · 약 **106만 거래 라인** | 취소·반품, 매출, RFM, 코호트, 재구매 | **9/9 단계 완료** |
+| **CASE 02 · Youth Migration & Regional Dynamics** | 국가데이터처 국내인구이동통계 | 20–39세 순이동, 20대/30대 방향 차이, 지역 유형 | **9/9 단계 완료** |
+
+<p align="center">
+  <img src="./cases/01_retail_customer_analytics/evidence/dashboard/01_one_page_decision.png" width="49%" alt="CASE 01 retail decision dashboard">
+  <img src="./cases/02_youth_migration_dynamics/evidence/dashboard/01_one_page_decision.png" width="49%" alt="CASE 02 youth migration decision dashboard">
+</p>
+
+| 바로 보기 | 링크 |
+| --- | --- |
+| CASE 01 분석 | [Retail Customer & Revenue Analytics](./cases/01_retail_customer_analytics/README.md) |
+| CASE 02 분석 | [Youth Migration & Regional Dynamics](./cases/02_youth_migration_dynamics/README.md) |
+| 표준 분석 절차 | [9단계 Methodology](./docs/methodology.md) |
+| 자동 검증 | [GitHub Actions · analysis-tests](https://github.com/ssg-sak/golden-data-lab/actions/workflows/analysis-tests.yml) |
+
+## What This Repository Demonstrates
+
+- **SQL과 Python의 역할 분리:** 추출·집계와 분석·검증을 목적에 맞게 나눕니다.
+- **데이터 품질 우선:** 결측·중복·이상치와 지표의 분모·기간·제외 조건을 먼저 고정합니다.
+- **통계와 해석의 경계 관리:** 효과 크기·불확실성을 확인하고 데이터에 없는 인과를 단정하지 않습니다.
+- **의사결정 연결:** 결과를 한 페이지 대시보드와 실행 가능한 제안으로 연결합니다.
+- **재현 가능성:** SQL, 코드, 테스트, 데이터 출처, 실행 순서와 분석 한계를 함께 기록합니다.
 
 ## Standard Methodology
 
@@ -60,36 +83,53 @@ UCI Online Retail II의 약 106만 건 거래 라인을 이용해 고객과 매�
 
 ```text
 golden-data-lab/
+├── .github/workflows/
+│   └── analysis-tests.yml
 ├── cases/
 │   ├── 01_retail_customer_analytics/
 │   │   ├── data/
-│   │   │   ├── raw/
-│   │   │   └── processed/
 │   │   ├── notebooks/
 │   │   ├── src/
 │   │   ├── sql/
+│   │   ├── tests/
 │   │   ├── evidence/
 │   │   ├── README.md
 │   │   ├── INSIGHTS.md
 │   │   ├── REPRODUCTION.md
 │   │   └── STUDY_GUIDE.md
 │   └── 02_youth_migration_dynamics/
+│       ├── data/
+│       ├── notebooks/
+│       ├── src/
+│       ├── sql/
+│       ├── tests/
+│       └── evidence/
 ├── common/
 ├── docs/
 │   ├── methodology.md
 │   └── case_template.md
+├── LICENSE
 ├── .gitignore
 └── requirements.txt
 ```
 
 원본 및 정제 데이터 파일은 용량과 출처 관리 문제로 Git에 커밋하지 않습니다. 각 사례의 `data/raw`와 `data/processed`에는 디렉터리 구조만 보존합니다.
 
+## Verification
+
+`main` 브랜치의 push와 pull request마다 두 사례의 단위 테스트를 GitHub Actions에서 실행합니다. 원본 공공데이터 파일이 필요한 검증은 파일이 없을 때 명시적으로 skip되며, 순수 로직 테스트는 저장소만으로 실행됩니다.
+
+```bash
+python -m unittest discover -s cases/01_retail_customer_analytics/tests -v
+python -m unittest discover -s cases/02_youth_migration_dynamics/tests -v
+```
+
 ## Tech Stack
 
 - Database: PostgreSQL, DBeaver
 - Analysis: Python, pandas, GeoPandas, JupyterLab, scipy
 - Statistics and Visualization: matplotlib, seaborn, scipy.stats
-- Reproducibility: Git, GitHub, documented SQL and notebooks
+- Reproducibility: Git, GitHub Actions, documented SQL, tests and notebooks
 
 ## Quick Start
 
@@ -102,15 +142,11 @@ Windows PowerShell:
 ```powershell
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
-python cases/01_retail_customer_analytics/src/download_data.py
 python -m unittest discover -s cases/01_retail_customer_analytics/tests -v
-python cases/02_youth_migration_dynamics/src/download_data.py
 python -m unittest discover -s cases/02_youth_migration_dynamics/tests -v
-python cases/02_youth_migration_dynamics/src/run_analysis.py
-jupyter lab
 ```
 
-CASE 01 원본 데이터는 다운로드 스크립트가 `cases/01_retail_customer_analytics/data/raw/online_retail_II.xlsx`에 저장합니다.
+원본 데이터까지 포함해 전체 분석을 재현하려면 각 CASE의 `REPRODUCTION.md`를 따릅니다. CASE 01 원본 데이터는 제공된 다운로드 스크립트로 받을 수 있습니다.
 
 ## Working Principles
 
@@ -119,3 +155,7 @@ CASE 01 원본 데이터는 다운로드 스크립트가 `cases/01_retail_custom
 - 데이터에 없는 사실이나 인과관계를 추정해 단정하지 않습니다.
 - 오래된 데이터의 결과를 현재 시장으로 일반화하지 않습니다.
 - 결과뿐 아니라 실패한 가정, 분석 한계와 재현 절차도 남깁니다.
+
+## License
+
+Code in this repository is available under the [MIT License](./LICENSE). Data and third-party materials remain subject to their original terms and licenses.
